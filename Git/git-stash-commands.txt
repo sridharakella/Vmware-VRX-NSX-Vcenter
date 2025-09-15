@@ -1,0 +1,4 @@
+git stash add -a
+git stash save “”
+git stash apply
+git stash pop

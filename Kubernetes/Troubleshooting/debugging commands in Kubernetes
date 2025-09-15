@@ -1,0 +1,254 @@
+
+ifconfig - going to show infterfaces configuration for network interfaces
+ipconfig( windows), slightly diferent ways.
+netstat ( network activity on my system)
+netstat -l  ( * is means everything)
+netstat -ln
+netstat -ap ( to see the programs that are listen on the machine)
+nc (open of connections to different systems)
+nc www.google.com 80
+nc -zv <ip> <port> 
+
+telnet www.google.com 80 (similar but  netcat supports listening and Supports UDP mode)
+
+
+Kubernetes network issues can be complex to diagnose due to the multi-layered networking architecture. Here's a systematic approach to troubleshooting common production network problems:
+Common Network Issues
+Pod-to-Pod Communication Failures
+
+Pods can't reach other pods in the same or different namespaces
+DNS resolution problems within the cluster
+Network policy blocking traffic
+
+Service Discovery Problems
+
+Services not accessible from pods
+Load balancing issues
+Endpoint registration failures
+
+External Connectivity Issues
+
+Ingress controller problems
+LoadBalancer services not working
+NodePort accessibility issues
+
+CNI Plugin Problems
+
+Network interface creation failures
+IP address allocation issues
+Route table inconsistencies
+
+Systematic Troubleshooting Approach
+1. Gather Basic Information
+bash# Check cluster and node status
+kubectl get nodes -o wide
+kubectl get pods --all-namespaces -o wide
+
+# Examine events for network-related errors
+kubectl get events --all-namespaces --sort-by='.lastTimestamp'
+2. Test Pod-to-Pod Connectivity
+bash# Create a test pod for debugging
+kubectl run debug-pod --image=nicolaka/netshoot --rm -it -- /bin/bash
+
+# Test connectivity between pods
+ping <target-pod-ip>
+telnet <service-name> <port>
+nslookup <service-name>
+3. Examine Service Configuration
+bash# Check service endpoints
+kubectl get endpoints <service-name>
+kubectl describe service <service-name>
+
+# Verify service selectors match pod labels
+kubectl get pods --show-labels
+4. DNS Troubleshooting
+bash# Test DNS resolution from within pods
+kubectl exec -it <pod-name> -- nslookup kubernetes.default
+kubectl exec -it <pod-name> -- dig <service-name>.<namespace>.svc.cluster.local
+
+# Check CoreDNS logs
+kubectl logs -n kube-system -l k8s-app=kube-dns
+5. Network Policy Analysis
+bash# List network policies
+kubectl get networkpolicies --all-namespaces
+
+# Check if policies are blocking traffic
+kubectl describe networkpolicy <policy-name>
+6. CNI Plugin Investigation
+bash# Check CNI configuration on nodes
+sudo cat /etc/cni/net.d/*
+
+# Examine CNI plugin logs
+journalctl -u kubelet | grep -i cni
+7. Node-Level Network Debugging
+bash# Check routing tables
+ip route show
+iptables -t nat -L
+
+# Verify network interfaces
+ip addr show
+brctl show (for bridge networks)
+Specific Troubleshooting Commands
+For Flannel Networks:
+bash# Check Flannel daemon logs
+kubectl logs -n kube-system daemonset/kube-flannel-ds
+
+# Verify Flannel configuration
+kubectl get configmap kube-flannel-cfg -n kube-system -o yaml
+For Calico Networks:
+bash# Check Calico node status
+kubectl exec -n kube-system calico-node-<id> -- calicoctl node status
+
+# Examine Calico logs
+kubectl logs -n kube-system -l k8s-app=calico-node
+For Ingress Issues:
+bash# Check ingress controller logs
+kubectl logs -n ingress-nginx deployment/nginx-ingress-controller
+
+# Verify ingress configuration
+kubectl describe ingress <ingress-name>
+Network Debugging Tools
+Essential debugging containers:
+
+nicolaka/netshoot - Comprehensive network troubleshooting toolkit
+busybox - Basic network utilities
+appropriate/curl - HTTP testing
+
+Key network utilities to use:
+
+ping, traceroute - Basic connectivity testing
+nc (netcat) - Port connectivity testing
+dig, nslookup - DNS resolution testing
+tcpdump - Packet capture and analysis
+ss, netstat - Socket and connection analysis
+
+Monitoring and Prevention
+Set up network monitoring:
+
+Use tools like Prometheus with network-specific metrics
+Monitor DNS query success rates
+Track service endpoint availability
+Alert on network policy violations
+
+Regular health checks:
+
+Implement readiness and liveness probes
+Monitor inter-service communication patterns
+Test cross-namespace connectivity regularly
+
+Best practices for prevention:
+
+Use network policies judiciously and test thoroughly
+Implement proper service mesh observability
+Maintain CNI plugin configurations
+Document network architecture and troubleshooting runbooks
+
+The key to effective network troubleshooting in Kubernetes is working systematically from the application layer down to the node networking layer, using the right tools at each level to isolate and identify the root cause of connectivity issues.
+
+
+
+
+debugging commands in Kubernetes
+
+----
+Exercises: 
+kubectl get nodes -o yaml
+ssh <IP-address-node>
+
+command: lsns -t pid
+
+command: ip netns identify <pid> ( for the above command)
+<will print the CNI>
+example : ip netns identify 6933
+
+
+command: ip add
+
+command : ip add | grep -A1 veth
+
+
+command : for i in 6814 6848; do ip netns identify $i; done
+
+command: ip netns exec cni-<id> ip add
+
+login to one of pod and test
+kubectl exec pod1 -c container -- ip add
+
+kubectl exec pod1 -c container2 -- ip add
+
+kubectl exec pod1 -c container1 -- curl -s localhost:80 -vvv
+
+
+----
+********** Interact Cluster Using KubeCtl **********
+1. Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image.
+kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.10
+
+2. View the Deployment:
+kubectl get deployments
+
+3. View the Pod:
+kubectl get pods
+
+4. Expose the Pod to the public internet using the kubectl expose command:
+kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+
+**The --type=LoadBalancer flag indicates that you want to expose your Service outside of the cluster.
+
+5. View the Service you created:
+minikube service hello-node
+
+CleanUP -
+1. Remove service
+kubectl delete service hello-node
+
+2. Remove Deployments-
+kubectl delete deployment hello-node
+
+
+-----
+    curl -sSf https://get.k0s.sh | sudo sh
+   15  sudo k0s install controller --single
+   16  sudo k0s start
+   17  sudo k0s kubectl get nodes
+   18  kubectl get pods
+   19  snap install kubectl
+   20  k0s
+   21  k0s kubectl cluster-info
+   22  k0s kubectl get nodes
+   23  k0s kubectl get pods -A
+   24  ls /var/lib/
+   25  ls /var/lib/k0s/pki
+   26  cd ~/.kube
+   27  ls -l
+   28  cd ..
+   29  pwd
+   30  cd root/play/
+   31  ls -l
+   32  k0s kubectl get pods -A
+   33  K0s
+   34  K0s --help
+   35  K0s kubeconfig admin
+   36  k0s kubeconfig admin
+   37  k0s kubeconfig admin > admin.conf
+   38  cat admin.conf
+   39  kubectl deploy nginx --image=nginx
+   40  k0s kubectl deploy nginx --image=nginx
+   41  k0s kubectl --help
+   42  ls /var/lib/kubelet
+   43  iptables -L -n
+   44  k0s reset reboot
+   45  k0s stop
+   46  systemctl status K0scontroller
+   47  systemctl status k0scontroller
+   48  k0s status
+   49  k0s reset
+   50  ls /var/lib/k0s
+   51  ls /var/lib/
+   52  cd kubelet
+   53  ls /var/lib/kubelet/
+   54  lds -l
+   55  ls -l
+   56  rm -rf /var/lib/kubelet/
+   57  iptables -L -n
+   58  history
