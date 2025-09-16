@@ -1,0 +1,40 @@
+Security 
+Network Isolation and Encryption ( cilium and Isitio, Istio is used google)
+Namespaces with Proper RBAC( when do you application via namedspace, default service account, setup a proper service account, 
+Limits( you have this amount CPU and memory, You shouldn’t set a limit for CPU, because we can’t CPU back if the pod crashes) , Requests( this pod can request this amount of cpu, and memory), Quotas(x cpu, xmemory, x pods)
+
+
+Network policies( ingress traffic and egress traffic).
+OPA ( setting best practices, like you shouldnt have latest images)
+Audit Logging( EKS don’t manage control plane, get the audit logs)
+Resource Scanning ( Clusters, Apps, CIS Benchmarks, Pods, K8s Manifests, Vunerability Database) Kubescape by ArmO.
+RBAC( Can only do authentication, But we don’t have authorization) problem with manifests etc, user accounts etc.
+AutoScaler( Karpenter)
+Secrets Management( Hashicorp)
+Monitoring and observability( DataDog—>Monitoring,Logging,Traces,Metrics,API)
+ServiceMesh( Isitio)
+OIDC( AWS IAM, Azure IAM we can use outside of Azure as well, or KeyCloak)
+Cluster Deployment( terraform)
+App Deployment( Gitops ArgoCD)
+Scanner( Kubescape)
+Fail Over & DR ( Velero or EBS snapshots, Veem is the best)
+Cost and Resource optimization( Cast.ai or Sisivio)
+Best Practices( Security ( shared responsibilty Model) anything we deploy it our responsibility. CIS Benchmarks standards document)
+Cluster Security at the worker node
+MultiTenancy(for AWS), how to manage isolation and seggreation to Kubernetes clkuster, if different teams, Dev IT and security work. (Namespaces,Network policies,OPA and RBAC)
+Kubernetes recommends 110 pods for node.
+maximum number if services in namespace is 5000 and in cluster is 10000
+if we decide to go with cluster autoscaler , it is tested for 1000 nodes upto 30 pods per node.
+
+Rollback strategies
+
+Upgrade Strategries.
+
+Kobe-state-metrics(metrics about kubernetes), difference between Kubernetes metrics server and Kubernetes-state-metrics is that it provides
+deep metrics about pods,
+
+Testing( chaos Engineering), go break a pod and node and see how it recovers faster.
+
+Performance Testing
+
+Refactoring( example Cloudformation, 
