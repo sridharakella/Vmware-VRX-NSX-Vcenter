@@ -1,4 +1,4 @@
-# DankTec Kubernetes Things
+#  Kubernetes Things
 This repo houses K8s related learnings, deployments and thoughts. The intention is to deploy a variety of different cluster flavours in different environments to allow experimentation with higher level tooling and features.
 
 ## /k3s
