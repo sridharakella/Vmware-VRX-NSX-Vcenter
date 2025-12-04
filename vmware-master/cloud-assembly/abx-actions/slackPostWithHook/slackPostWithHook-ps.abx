@@ -1,0 +1,22 @@
+---
+exportVersion: "1"
+# original exportId: "8a5ee9f9714a1fdb0171ee8ac7af5857"
+exportId: "8a5ee9f9714a1fdb0171ee8ac7af5866"
+name: "slackPostWithHook-ps (www.kaloferov)"
+runtime: "powershell"
+entrypoint: "handler"
+description: "Slack - Post to Slack using Hook"
+inputs:
+  slackHookIn: "<Required>"
+  slackAttColorIn: "#36a64f"
+  slackAttFallbackIn: "Cloud Assembly Deployment"
+  slackAttAuthorIconIn: "<Optional>"
+  slackAttAuthorLinkIn: "<Optional>"
+  slackAttAuthorNameIn: "<Optional>"
+timeoutSeconds: 180
+deploymentTimeoutSeconds: 600
+actionType: "SCRIPT"
+provider: "on-prem"
+configuration:
+  const_azure-system_managed_identity: false
+memoryInMB: 300

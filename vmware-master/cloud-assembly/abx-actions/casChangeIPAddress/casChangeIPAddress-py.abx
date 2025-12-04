@@ -1,0 +1,13 @@
+---
+exportVersion: "1"
+#exportId: "8a5e2d467724118701773fb54f6d5327"
+exportId: "8a5e2d467724118701773fb54f6d53654"
+name: "casChangeIPAddress-py-v1"
+runtime: "python"
+entrypoint: "handler"
+description: "CAS - Change IP Address"
+timeoutSeconds: 600
+deploymentTimeoutSeconds: 900
+actionType: "SCRIPT"
+provider: "aws"
+memoryInMB: 300

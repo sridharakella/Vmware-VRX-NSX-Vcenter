@@ -1,0 +1,21 @@
+---
+exportVersion: "1"
+# exportId: "8a5e3c2a749c123e01749c2e3796015f"
+exportId: "8a5e3c2a749c123e01749c2e379601sd"
+name: "casAutoDeleteDeployment-py-v2(www.kaloferov.com) "
+runtime: "python"
+entrypoint: "handler"
+description: "CAS - Auto Delete Failed Deployments"
+inputs:
+  deleteDelayIn: 0
+  awsSmRegionNameIn: "<Opitonal>"
+  cspRefreshTokenIn: "<Opitonal>"
+  deploymentIdABXIn: "<Opitonal>"
+  awsSmCspTokenSecretIdIn: "<Opitonal>"
+  actionOptionTokenProviderIn: "<Required>"
+timeoutSeconds: 600
+deploymentTimeoutSeconds: 900
+dependencies: "pyyaml\nboto3\nrequests"
+actionType: "SCRIPT"
+provider: "aws"
+memoryInMB: 300

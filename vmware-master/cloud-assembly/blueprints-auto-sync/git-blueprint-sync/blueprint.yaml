@@ -1,0 +1,24 @@
+#--------------------------------------------------------#
+#                     Spas Kaloferov                     #
+#                   www.kaloferov.com                    #
+# bit.ly/The-Twitter      Social     bit.ly/The-LinkedIn #
+# bit.ly/The-Gitlab        Git         bit.ly/The-Github #
+# bit.ly/The-BSD         License          bit.ly/The-GNU #
+#--------------------------------------------------------#
+info: |-
+  #
+  # VMware Cloud Assembly Blueprint Sample
+  # 
+  # - Syncs Assembly Blueprint to Gitlab
+  # - Ref: ABX Action to Sync Blueprints from Assembly to Gitlab (http://kaloferov.com/blog/skkb1050/)
+  #
+name: Git - Blueprint Sync    # Value overridden by ABX Action
+version: 2    # Value overridden by ABX Action
+options:
+  gitlabSyncEnable: true
+  gitlabSyncDelete: true
+  awsSesEmailEnable: false
+  slackPostEnable: false
+#-------------------------INPUTS-------------------------#
+inputs: {}
+resources: {}

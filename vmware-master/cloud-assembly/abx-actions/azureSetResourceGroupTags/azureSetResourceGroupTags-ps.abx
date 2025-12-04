@@ -1,0 +1,28 @@
+---
+exportVersion: "1"
+# original exportId: "8a5e0b1d71c2b48c017203c428df5237"
+exportId: "8a5e0b1d71c2b48c017203c428df5238"
+name: "azureSetResourceGroupTags-ps (www.kaloferov.com)"
+runtime: "powershell"
+entrypoint: "handler"
+description: "Azure - Set Azure RM Resource Group Tags from Deployment"
+inputs:
+  azTenantIdIn: "<Required>"
+  azClientIdIn: "<Required>"
+  azClientSecretIn: "<Required>"
+  runOnPorpertyIn: "<Optional>"
+  resourceGroupNameIn: "<Optional>"
+  resourceGroupTagsIn: "<Optional>"
+  runOnPropertyNameIn: "<Optional>"
+  runOnPorpertyMatchIn: "<Optional>"
+  actionOptionRunOnPropertyIn: "False"
+  actionOptionAcceptPayloadInputIn: "True"
+timeoutSeconds: 180
+deploymentTimeoutSeconds: 600
+dependencies: "@{\n    'Az.Accounts' = '1.7.4'\n    'Az.Resources' = '1.13.0'\n  \
+  \  'Az.Storage' = '1.13.0'\n}"
+actionType: "SCRIPT"
+provider: "on-prem"
+configuration:
+  const_azure-system_managed_identity: false
+memoryInMB: 300

@@ -1,0 +1,20 @@
+---
+exportVersion: "1"
+# Original exportId: "8a5ea9ae71c2b1880171f4b516102429"
+exportId: "8a5ea9ae31c2b1880171f4b516102439"
+name: "azureConnect-ps (www.kaloferov.com)"
+runtime: "powershell"
+entrypoint: "handler"
+description: "Azure - Get Azure Account Principal Information"
+inputs:
+  azClientIdIn: "<Required>"
+  azTenantIdIn: "<Required>"
+  azClientSecretIn: "<Required>"
+timeoutSeconds: 180
+deploymentTimeoutSeconds: 600
+dependencies: "@{\n    'Az.Accounts' = '1.7.4'\n}"
+actionType: "SCRIPT"
+provider: "on-prem"
+configuration:
+  const_azure-system_managed_identity: false
+memoryInMB: 300

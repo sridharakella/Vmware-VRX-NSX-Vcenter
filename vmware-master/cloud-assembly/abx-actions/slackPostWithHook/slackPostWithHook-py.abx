@@ -1,0 +1,21 @@
+---
+exportVersion: "1"
+#original exportId: "8a5eb3417126ded00171631145cd2a73"
+exportId: "8a5eb3417126ded00171631145cd2a77"
+name: "slackPostWithHook-py (www.kaloferov.com)"
+runtime: "python"
+entrypoint: "handler"
+description: "Slack - Post to Slack using Hook"
+inputs:
+  slackHookIn: "<Required>"
+  slackAttColorIn: "#36a64f"
+  slackAttFallbackIn: "Cloud Assembly deployment"
+  slackAttAuthorIconIn: "<Optional>"
+  slackAttAuthorLinkIn: "<Optional>"
+  slackAttAuthorNameIn: "<Optional>"
+timeoutSeconds: 180
+deploymentTimeoutSeconds: 600
+dependencies: "requests\ndatetime"
+actionType: "SCRIPT"
+provider: "aws"
+memoryInMB: 300

@@ -1,0 +1,17 @@
+---
+exportVersion: "1"
+#exportId: "8a5e1cf3753361500175b8b5e0f84592"
+exportId: "8a5e1cf3753361500175b8b5e0f84492"
+name: "k8sCreateFromYaml-py-v1 (www.kaloferov.com)"
+runtime: "python"
+entrypoint: "handler"
+description: "K8S - Create From YAML"
+inputs:
+  cspRefreshTokenIn: "<Required>"
+  actionOptionKubeconfigIn: "admin"
+timeoutSeconds: 600
+deploymentTimeoutSeconds: 900
+dependencies: "requests\npyyaml\nkubernetes\n"
+actionType: "SCRIPT"
+provider: "aws"
+memoryInMB: 300
