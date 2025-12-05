@@ -4,5 +4,16 @@ Supervisory cluster is the cluster when ever you enable work load managerment, S
 
 Steps for creating a work load cluster  <br/>
 
-kubectl vsphere login --server=<SUPERVISOR_IP_OR_HOSTNAME> --insecure-skip-tls-verify
+kubectl vsphere login --server=<SUPERVISOR_IP_OR_HOSTNAME> --insecure-skip-tls-verify <br/>
+
+kubectl config use-context <SUPERVISOR-NAMESPACE-NAME> <br/>
+
+Apply the manifest for workload clustr <br/>
+
+tanzu cluster kubeconfig get <WORKLOAD-CLUSTER-NAME> --admin <br/>
+
+tanzu context use <WORKLOAD-CLUSTER-NAME> # Using Tanzu CLI for context switch <br/>
+
+kubectl config use-context <WORKLOAD-CLUSTER-NAME> <br/>
+
 
