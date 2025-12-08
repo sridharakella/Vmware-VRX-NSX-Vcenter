@@ -5,11 +5,6 @@ Persistence: Not accepting "no" and finding creative solutions to overcome block
 Communication: Managing large incident calls and coaching development teams
 Systematic Thinking: Structured approaches to complex problem-solving
 
-
-
-
-
-
 ifconfig - going to show infterfaces configuration for network interfaces
 ipconfig( windows), slightly diferent ways.
 netstat ( network activity on my system)
@@ -21,10 +16,7 @@ nc www.google.com 80
 nc -zv <ip> <port> 
 
 traceroute 
-
-
 telnet www.google.com 80 (similar but  netcat supports listening and Supports UDP mode)
-
 
 Kubernetes network issues can be complex to diagnose due to the multi-layered networking architecture. Here's a systematic approach to troubleshooting common production network problems:
 Common Network Issues
