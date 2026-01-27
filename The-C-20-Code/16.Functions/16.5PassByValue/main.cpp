@@ -1,13 +1,13 @@
 #include <iostream>
 
+
 void say_age(int age){ // Parameter
-    ++age;
+    ++age; // basically we are copy the age , maintaining the seperate copy.
     std::cout <<  "Hello , you are " << age << " years old! &age : " << &age <<  std::endl;
 }
 
 int main(){
-
-    int age{23}; // Local
+     int age=23;// Local
     std::cout << "age (before call) : " << age << "&age : " << &age << std::endl;
     say_age(age); // Argument
     std::cout << "age (after call) : " << age << "&age : " << &age <<  std::endl;

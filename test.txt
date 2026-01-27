@@ -1,0 +1,33 @@
+VMware Aria Scripting Options
+ABX Actions
+
+Python, Node.js, PowerShell
+Serverless, event-driven
+Lightweight and fast
+Best for: API integrations, simple automation
+
+vRO Workflows
+
+JavaScript
+Stateful, complex orchestration
+Visual designer
+Best for: Multi-step processes, approvals, long-running tasks
+
+Cloud Templates (Cloud-Init)
+
+YAML with embedded scripts
+Runs inside guest OS during provisioning
+Best for: Initial VM configuration, software installation
+
+Ansible Integration
+
+YAML playbooks
+Configuration management
+Best for: OS-level automation, app deployment
+
+Terraform Integration
+
+HCL language
+Infrastructure as Code
+Best for: Multi-cloud provisioning, state management
+ 

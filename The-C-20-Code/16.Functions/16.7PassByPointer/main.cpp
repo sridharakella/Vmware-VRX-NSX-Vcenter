@@ -14,6 +14,7 @@ int main(){
 
 
 void say_age(int* age){ // Parameter
+    std::cout <<  "Hello , you are " << *age << " years old! &age : " << &age <<  std::endl;//24
     ++(*age); 
     std::cout <<  "Hello , you are " << *age << " years old! &age : " << &age <<  std::endl;//24
 }

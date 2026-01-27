@@ -1,5 +1,6 @@
 #include <iostream>
 
+
 void say_age(const int* age); // Declaration
 
 int main(){

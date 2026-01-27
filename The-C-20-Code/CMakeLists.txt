@@ -1,0 +1,1097 @@
+cmake_minimum_required(VERSION 4.1)
+project(The_C_20_Code)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(03.FirstSteps/3.2FirstCppProgram)
+include_directories(16.Functions/16.4MultipleFiles_CompilationModelRevisited)
+include_directories(26.Classes/26.6ClassAcrossMultipleFiles)
+include_directories(26.Classes/26.8ManagingClassObjectsThroughPointers)
+include_directories(27.ZoomingInOnClassObjects/27.2ConstObjects)
+include_directories(27.ZoomingInOnClassObjects/27.3ConstObjectsAsFunctionParameters)
+include_directories(27.ZoomingInOnClassObjects/27.4ConstMemberFunctions)
+include_directories(27.ZoomingInOnClassObjects/27.5GettersThatDoubleAsSetters)
+include_directories(27.ZoomingInOnClassObjects/27.6DanglingPointersAndReferences)
+include_directories(27.ZoomingInOnClassObjects/27.8MutableObjects)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.10MoveConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.11DeletedConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.2DefaultParametersForConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.3InitializerListsForConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.5ExplicitConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.6ConstructorDelegation)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.7CopyConstructors)
+include_directories(28.DivingDeepIntoConstructorsAndInitialization/28.8ObjectsStoredInArraysAreCopies)
+include_directories(30.ConstAndStaticMembers/30.10NestedClasses)
+include_directories(30.ConstAndStaticMembers/30.11InClassMemberVariableInitialization)
+include_directories(30.ConstAndStaticMembers/30.3StaticMemberVariables)
+include_directories(30.ConstAndStaticMembers/30.4InlineStaticMemberVariables)
+include_directories(30.ConstAndStaticMembers/30.5StaticConstants)
+include_directories(30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17)
+include_directories(30.ConstAndStaticMembers/30.7MemberVariablesOfTypeSelf)
+include_directories(30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes)
+include_directories(30.ConstAndStaticMembers/30.9StaticMemberFunctions)
+include_directories(31.Namespaces/31.3NamespacesAcrossMultipleFiles)
+include_directories(31.Namespaces/31.6UsingDeclarations)
+include_directories(32.ProgramsWithMultipleFiles/32.11ForwardDeclarations)
+include_directories(32.ProgramsWithMultipleFiles/32.2CompilingAndLinking_Model)
+include_directories(32.ProgramsWithMultipleFiles/32.4DeclarationsAndDefinitions)
+include_directories(32.ProgramsWithMultipleFiles/32.5OneDefinitionRule)
+include_directories(32.ProgramsWithMultipleFiles/32.9InlineVariablesAndFunctions)
+include_directories(33.SmartPointers/33.2UniquePointers)
+include_directories(33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes)
+include_directories(33.SmartPointers/33.4UniquePointersAndArrays)
+include_directories(33.SmartPointers/33.5SharedPointers)
+include_directories(33.SmartPointers/33.6SharedPointersFromUniquePointers)
+include_directories(33.SmartPointers/33.7SharedPointersWithArrays)
+include_directories(33.SmartPointers/33.8SharedPointersAsFunctionParametersAndReturnTypes)
+include_directories(33.SmartPointers/33.9WeakPointers)
+include_directories(34.OperatorOverloading/34.10CompoundOperators_ReusingOperators)
+include_directories(34.OperatorOverloading/34.11CustomTypeConversions)
+include_directories(34.OperatorOverloading/34.12ImplicitConversionsWithOverloadedBinaryOperators)
+include_directories(34.OperatorOverloading/34.13UnaryPrefixIncrementOperatorAsMember)
+include_directories(34.OperatorOverloading/34.14UnaryPrefixIncrementOperatorAsNonMember)
+include_directories(34.OperatorOverloading/34.15UnaryPostfixIncrementOperator)
+include_directories(34.OperatorOverloading/34.16UnaryPrefixPostfixDecrementOperator)
+include_directories(34.OperatorOverloading/34.17CopyAssignmentOperator)
+include_directories(34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes)
+include_directories(34.OperatorOverloading/34.19TypeConversionsRecap)
+include_directories(34.OperatorOverloading/34.2AdditionOperatorAsMember)
+include_directories(34.OperatorOverloading/34.3AdditionOperatorAsNonMember)
+include_directories(34.OperatorOverloading/34.4SubscriptOperatorReading)
+include_directories(34.OperatorOverloading/34.5SubscriptOperatorReadingWritting)
+include_directories(34.OperatorOverloading/34.6SubscriptOperatorForCollectionTypes)
+include_directories(34.OperatorOverloading/34.7StreamInsertionOperator)
+include_directories(34.OperatorOverloading/34.8StreamExtractionOperator)
+include_directories(34.OperatorOverloading/34.9OtherArithmeticOperators)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.10CustomSpaceshipOperatorForOrdering)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.11LogicalOperatorsSimplified)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.12SpaceshipAsNonMember)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.2AllLogicalOperators)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.3Rel_OpsNamespace)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.4LogicalOperatorsWithImplicitConversions)
+include_directories(35.LogicalOperatorsAndThreeWayComparison/35.7CustomEqualityOperator)
+include_directories(36.Inheritance/36.10CopyConstructorsWithInheritance)
+include_directories(36.Inheritance/36.11InheritingBaseConstructors)
+include_directories(36.Inheritance/36.12InheritanceAndDestructors)
+include_directories(36.Inheritance/36.13ReusedSymbolsInInheritance)
+include_directories(36.Inheritance/36.2FirstTryOnInheritance)
+include_directories(36.Inheritance/36.3ProtectedMembers)
+include_directories(36.Inheritance/36.5BaseClassAccessSpecifiersADemo)
+include_directories(36.Inheritance/36.6ClosingInOnPrivateInheritance)
+include_directories(36.Inheritance/36.7ResurectingMembersBackInContext)
+include_directories(36.Inheritance/36.8DefaultArgConstructorsWithInheritance)
+include_directories(36.Inheritance/36.9ConstructorsWithInheritance)
+include_directories(37.Polymorphism/37.10Final)
+include_directories(37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers)
+include_directories(37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers)
+include_directories(37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments)
+include_directories(37.Polymorphism/37.15VirtualDestructors)
+include_directories(37.Polymorphism/37.16DynamicCasts)
+include_directories(37.Polymorphism/37.18TypeIdOperator)
+include_directories(37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses)
+include_directories(37.Polymorphism/37.20AbstractClassesAsInterfaces)
+include_directories(37.Polymorphism/37.2StaticBindingWithInheritance)
+include_directories(37.Polymorphism/37.3PolymorphismWithVirtualFunctions)
+include_directories(37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing)
+include_directories(37.Polymorphism/37.5PolymorphicObjectsStoredInCollections)
+include_directories(37.Polymorphism/37.6Override)
+include_directories(37.Polymorphism/37.7OverloadingOverridingAndHiding)
+include_directories(37.Polymorphism/37.8PolymorphismAtDifferentLevels)
+include_directories(37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers)
+include_directories(38.Exceptions/38.10RethrownExceptions)
+include_directories(38.Exceptions/38.12EllipsisCatchAllBlock)
+include_directories(38.Exceptions/38.8ExceptionsAsClassObjectsWithInheritanceHierarchies)
+include_directories(38.Exceptions/38.9PolymorphicExceptions)
+include_directories(39.Practice-BoxContainerType/39.2ConstructingDestroying)
+include_directories(39.Practice-BoxContainerType/39.3AddingItems)
+include_directories(39.Practice-BoxContainerType/39.4RemovingItems)
+include_directories(39.Practice-BoxContainerType/39.5OtherOperators)
+include_directories(39.Practice-BoxContainerType/39.7StoringInDifferentTypes)
+include_directories(40.ClassTemplates/40.11StreamInsertionOperatorForClassTemplates)
+include_directories(40.ClassTemplates/40.12ClassTemplatesWithTypeTraitsAndStaticAsserts)
+include_directories(40.ClassTemplates/40.13ClassTemplatesWithConcepts)
+include_directories(40.ClassTemplates/40.14BuiltInConcepts)
+include_directories(40.ClassTemplates/40.2YourFirstClassTemplate)
+include_directories(40.ClassTemplates/40.4NonTypeTemplateParameters)
+include_directories(40.ClassTemplates/40.5DefaultValuesForTemplateParameters)
+include_directories(40.ClassTemplates/40.7TemplateSpecializations)
+include_directories(40.ClassTemplates/40.8TemplateSpecializationWithSelectMemberFunctions)
+include_directories(41.MoveSemantics/41.08MoveOnlyTypes)
+include_directories(41.MoveSemantics/41.09PassingByRvalueReference)
+include_directories(41.MoveSemantics/41.4MovingTemporariesAround)
+include_directories(41.MoveSemantics/41.5MoveConstructorsMoveAssignmentOperators)
+include_directories(41.MoveSemantics/41.6MovingLvaluesWithStdMove)
+include_directories(41.MoveSemantics/41.7InvalidatePointersAfterStdMove)
+include_directories(42.FunctionLikeEntities/42.10LambdaFunctionsAsCallbacks)
+include_directories(42.FunctionLikeEntities/42.15StdFunction)
+include_directories(42.FunctionLikeEntities/42.3CallbackFunctions)
+include_directories(42.FunctionLikeEntities/42.4FunctionPointerTypeAliases)
+include_directories(42.FunctionLikeEntities/42.5FunctionPointerTypeAliasesWithTemplates)
+include_directories(42.FunctionLikeEntities/42.6Functors)
+include_directories(42.FunctionLikeEntities/42.7StandardFunctors)
+include_directories(42.FunctionLikeEntities/42.8FunctorsWithParameters)
+include_directories(46.RangesLibraryInCpp20/46.4Projections)
+include_directories(47.BuildingIteratorsForCustomContainers/40.04CustomInputIterator)
+include_directories(47.BuildingIteratorsForCustomContainers/40.05CustomOutputIterator)
+include_directories(47.BuildingIteratorsForCustomContainers/40.06CustomForwardIterator)
+include_directories(47.BuildingIteratorsForCustomContainers/40.07CustomBidirectionalIteator)
+include_directories(47.BuildingIteratorsForCustomContainers/40.08CustomRandomAccessIterator)
+include_directories(47.BuildingIteratorsForCustomContainers/40.09CustomIteratorsWithViews)
+include_directories(47.BuildingIteratorsForCustomContainers/40.10ConstantIterators)
+include_directories(47.BuildingIteratorsForCustomContainers/40.11RawPointersAsIterators)
+include_directories(48.Coroutines/47.9ThirdPartyCorotineTypes)
+
+add_executable(The_C_20_Code
+        03.FirstSteps/3.2FirstCppProgram/main.cpp
+        03.FirstSteps/3.2FirstCppProgram/test.cpp
+        03.FirstSteps/3.2FirstCppProgram/test.h
+        03.FirstSteps/3.3Comments/main.cpp
+        03.FirstSteps/3.4ErrorsWarnings/main.cpp
+        03.FirstSteps/3.5StatementsAndFunctions/main.cpp
+        03.FirstSteps/3.6DataInputAndOutput/main.cpp
+        "03.FirstSteps/C++ 20 Template Project/main.cpp"
+        04.VariablesAndDatatypes/4.2NumberSystems/main.cpp
+        04.VariablesAndDatatypes/4.3IntegerTypes/main.cpp
+        04.VariablesAndDatatypes/4.4IntegerModifiers/main.cpp
+        04.VariablesAndDatatypes/4.5FractionalNumbers/main.cpp
+        04.VariablesAndDatatypes/4.6Booleans/main.cpp
+        04.VariablesAndDatatypes/4.7CharactersAndText/main.cpp
+        04.VariablesAndDatatypes/4.8Auto/main.cpp
+        04.VariablesAndDatatypes/4.9Assignments/main.cpp
+        "04.VariablesAndDatatypes/C++ 20 Template Project/main.cpp"
+        05.OperationsOnData/5.10.MathFunctions/main.cpp
+        05.OperationsOnData/5.11.WeirdIntegralTypes/main.cpp
+        05.OperationsOnData/5.2.BasicOperations/main.cpp
+        05.OperationsOnData/5.3.PrecedenceAndAssociativity/main.cpp
+        05.OperationsOnData/5.4.PrefixPostfixIncrementDecrement/main.cpp
+        05.OperationsOnData/5.5.CompoundAssignmentOperators/main.cpp
+        05.OperationsOnData/5.6.RelationalOperators/main.cpp
+        05.OperationsOnData/5.7.LogicalOperators/main.cpp
+        05.OperationsOnData/5.8.OutputFormatting/main.cpp
+        05.OperationsOnData/5.9.NumericLimits/main.cpp
+        "05.OperationsOnData/C++ 20 Template Project/main.cpp"
+        06.LiteralsAndConstants/6.2Literals/main.cpp
+        06.LiteralsAndConstants/6.3Constants/main.cpp
+        06.LiteralsAndConstants/6.4ConstantExpressions/main.cpp
+        06.LiteralsAndConstants/6.5constinit/main.cpp
+        "06.LiteralsAndConstants/C++ 20 Template Project/main.cpp"
+        07.ConversionsOverflowAndUnderflow/7.2ImplicitDataConversions/main.cpp
+        07.ConversionsOverflowAndUnderflow/7.3ExplicitDataConversions/main.cpp
+        07.ConversionsOverflowAndUnderflow/7.4OverflowAndUnderflow/main.cpp
+        "07.ConversionsOverflowAndUnderflow/C++ 20 Template Project/main.cpp"
+        08.BitwiseOperators/8.2PrintingIntegersInBinary/main.cpp
+        08.BitwiseOperators/8.3ShiftOperators/main.cpp
+        08.BitwiseOperators/8.4LogicalBitwiseOperators/main.cpp
+        08.BitwiseOperators/8.5CompoundBitwiseOperators/main.cpp
+        08.BitwiseOperators/8.6Masks/main.cpp
+        08.BitwiseOperators/8.7MasksExample/main.cpp
+        08.BitwiseOperators/8.8PackingColorInformation/main.cpp
+        "08.BitwiseOperators/C++ 20 Template Project/main.cpp"
+        09.VariableLifetimeAndScope/9.2VariableScope/main.cpp
+        "09.VariableLifetimeAndScope/C++ 20 Template Project/main.cpp"
+        10.FlowControl/10.10SwitchWithInitializer/main.cpp
+        10.FlowControl/10.11VariableScopeRevisited/main.cpp
+        10.FlowControl/10.12SwitchScope/main.cpp
+        10.FlowControl/10.2IfStatements/main.cpp
+        10.FlowControl/10.3ElseIf/main.cpp
+        10.FlowControl/10.4Switch/main.cpp
+        10.FlowControl/10.5ShortCircuitEvaluation/main.cpp
+        10.FlowControl/10.6IntegralLogicConditions/main.cpp
+        10.FlowControl/10.7TernaryOperators/main.cpp
+        10.FlowControl/10.8IfConstexpr/main.cpp
+        10.FlowControl/10.9IfWithInitializer/main.cpp
+        "10.FlowControl/C++ 20 Template Project/main.cpp"
+        11.Loops/11.10InfiniteLoopPractice/main.cpp
+        11.Loops/11.11DecrementingLoops/main.cpp
+        11.Loops/11.12NestedLoops/main.cpp
+        11.Loops/11.13BreakAndContinue/main.cpp
+        11.Loops/11.14FixCalculator/main.cpp
+        11.Loops/11.15ForLoopWithInitCondition/main.cpp
+        11.Loops/11.2ForLoop/main.cpp
+        11.Loops/11.3ForLoopMultipleDeclarations/main.cpp
+        11.Loops/11.4CommaOperator/main.cpp
+        11.Loops/11.5RangeBasedForLoop/main.cpp
+        11.Loops/11.6WhileLoop/main.cpp
+        11.Loops/11.7HugeLoopsWithOutput/main.cpp
+        11.Loops/11.8DoWhileLoop/main.cpp
+        11.Loops/11.9InfiniteLoops/main.cpp
+        "11.Loops/C++ 20 Template Project/main.cpp"
+        12.Arrays/12.10Practice_FortuneTellerV2/main.cpp
+        12.Arrays/12.2DeclaringAndUsingArrays/main.cpp
+        12.Arrays/12.3SizeOfAnArray/main.cpp
+        12.Arrays/12.4ArraysOfCharacters/main.cpp
+        12.Arrays/12.5ArrayBounds/main.cpp
+        12.Arrays/12.6GeneratingRandomNumbers/main.cpp
+        12.Arrays/12.7Practice_FortuneTellerV1/main.cpp
+        12.Arrays/12.8MultiDimensionalArrays/main.cpp
+        12.Arrays/12.9MultiDimensionalArraysOfCharacters/main.cpp
+        "12.Arrays/C++ 20 Template Project/main.cpp"
+        13.Pointers/13.10PointerArithmetic_Navigation/main.cpp
+        13.Pointers/13.11PointerArithmetic_DistanceBetweenElements/main.cpp
+        13.Pointers/13.12PointerArithmetic_ComparingPointers/main.cpp
+        13.Pointers/13.13SwappingArrayData_PointerArithmetic/main.cpp
+        13.Pointers/13.15DynamicMemoryAllocation/main.cpp
+        13.Pointers/13.16DanglingPointers/main.cpp
+        13.Pointers/13.17WhenNewFails/main.cpp
+        13.Pointers/13.18NullPointerSafety/main.cpp
+        13.Pointers/13.19MemoryLeaks/main.cpp
+        13.Pointers/13.20DynamicallyAllocatedArrays/main.cpp
+        13.Pointers/13.2DeclaringAndUsingPointers/main.cpp
+        13.Pointers/13.3PointerToChar/main.cpp
+        13.Pointers/13.4ArrayOfPointerToChar/main.cpp
+        13.Pointers/13.5ConstPointerAndPointerToConst/main.cpp
+        13.Pointers/13.6ArrayOfContPointerToConstChar/main.cpp
+        13.Pointers/13.7PointersAndArrays/main.cpp
+        13.Pointers/13.8SwappingArrayData_Demo/main.cpp
+        "13.Pointers/C++ 20 Template Project/main.cpp"
+        14.References/14.2.DeclaringAndUsingReferences/main.cpp
+        14.References/14.3.ComparingPointersAndReferences/main.cpp
+        14.References/14.4.ReferencesAndConst/main.cpp
+        14.References/14.5.ReferencesWithRangeBasedForLoops/main.cpp
+        "14.References/C++ 20 Template Project/main.cpp"
+        15.CharacterManipulationAndStrings/15.10ModifyingStdStrings/main.cpp
+        15.CharacterManipulationAndStrings/15.11ComparingStdStrings/main.cpp
+        15.CharacterManipulationAndStrings/15.12StdStringCompare/main.cpp
+        15.CharacterManipulationAndStrings/15.13StdStringReplacingCopyingResizingSwapping/main.cpp
+        15.CharacterManipulationAndStrings/15.14SearchingStdString/main.cpp
+        15.CharacterManipulationAndStrings/15.15TransformingStdStringFromToNumbers/main.cpp
+        15.CharacterManipulationAndStrings/15.16EscapeSequences/main.cpp
+        15.CharacterManipulationAndStrings/15.17RawStringLiterals/main.cpp
+        15.CharacterManipulationAndStrings/15.18CopiedStrings/main.cpp
+        15.CharacterManipulationAndStrings/15.19StringView/main.cpp
+        15.CharacterManipulationAndStrings/15.2CharacterManipulation/main.cpp
+        15.CharacterManipulationAndStrings/15.3CStringManipulation/main.cpp
+        15.CharacterManipulationAndStrings/15.4CStringConcatenationAndCopy/main.cpp
+        15.CharacterManipulationAndStrings/15.6DeclaringAndUsingStdString/main.cpp
+        15.CharacterManipulationAndStrings/15.7ConcatenatingStdStrings/main.cpp
+        15.CharacterManipulationAndStrings/15.8AccessingCharactersInStdString/main.cpp
+        15.CharacterManipulationAndStrings/15.9StdStringSizeAndCapacity/main.cpp
+        "15.CharacterManipulationAndStrings/C++ 20 Template Project/main.cpp"
+        16.Functions/16.10PassByReference/main.cpp
+        16.Functions/16.11PassByConstReference/main.cpp
+        16.Functions/16.13ArrayFunctionParameters/main.cpp
+        16.Functions/16.14SizedArrayFunctionParameters/main.cpp
+        16.Functions/16.15SizedArraysByReference/main.cpp
+        16.Functions/16.16MultiDimensionalArrayFunctionParameters/main.cpp
+        16.Functions/16.17DefaultFunctionParameters/main.cpp
+        16.Functions/16.18ImplicitConversions/main.cpp
+        16.Functions/16.19ImplicitConversionsWithReferences/main.cpp
+        16.Functions/16.20ImplicitConversionsWithPointers/main.cpp
+        16.Functions/16.21String_viewParameters/main.cpp
+        16.Functions/16.22ImplicitConversionsFromStringViewToString/main.cpp
+        16.Functions/16.23constexprFunctions/main.cpp
+        16.Functions/16.24constevalFunctions/main.cpp
+        16.Functions/16.2FirstHandOnCppFunctions/main.cpp
+        16.Functions/16.3FunctionDeclarationsAndDefinitions/main.cpp
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/compare.cpp
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/compare.h
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/main.cpp
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/operations.cpp
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/operations.h
+        16.Functions/16.4MultipleFiles_CompilationModelRevisited/some_other_file.cpp
+        16.Functions/16.5PassByValue/main.cpp
+        16.Functions/16.6PassByConstValue/main.cpp
+        16.Functions/16.7PassByPointer/main.cpp
+        16.Functions/16.8PassByPointerToConst/main.cpp
+        16.Functions/16.9PassByConstPointerToConst/main.cpp
+        "16.Functions/C++ 20 Template Project/main.cpp"
+        17.EnumsAndTypeAliases/17.2EnumClasses/main.cpp
+        17.EnumsAndTypeAliases/17.3UsingEnum/main.cpp
+        17.EnumsAndTypeAliases/17.4OldEnums/main.cpp
+        17.EnumsAndTypeAliases/17.5TypeAliases/main.cpp
+        "17.EnumsAndTypeAliases/C++ 20 Template Project/main.cpp"
+        18.ArgumentsToTheMainFunction/18.2GrabAndUseTheArguments/main.cpp
+        18.ArgumentsToTheMainFunction/18.3CalculatorV1/main.cpp
+        18.ArgumentsToTheMainFunction/18.4CalculatorV2/main.cpp
+        "18.ArgumentsToTheMainFunction/C++ 20 Template Project/main.cpp"
+        19.GettingThingsOutOfFuntions/19.10FunctionDefinitionsWithReturnTypeDeduction/main.cpp
+        19.GettingThingsOutOfFuntions/19.11OptionalOutputFromFunctions/main.cpp
+        19.GettingThingsOutOfFuntions/19.12IntroducingStdOptional/main.cpp
+        19.GettingThingsOutOfFuntions/19.13OptionalOutputWithStdOptional/main.cpp
+        19.GettingThingsOutOfFuntions/19.2InputAndOutputParameters/main.cpp
+        19.GettingThingsOutOfFuntions/19.3ReturningFromFunctionsByValue/main.cpp
+        19.GettingThingsOutOfFuntions/19.4ReturningByReference/main.cpp
+        19.GettingThingsOutOfFuntions/19.5ReturningByPointer/main.cpp
+        19.GettingThingsOutOfFuntions/19.6ReturningArrayElementIndexByPointer/main.cpp
+        19.GettingThingsOutOfFuntions/19.7BareAutoTypeDeduction/main.cpp
+        19.GettingThingsOutOfFuntions/19.8FunctionReturnTypeDeduction/main.cpp
+        19.GettingThingsOutOfFuntions/19.9ReturnTypeDeductionWithReferences/main.cpp
+        "19.GettingThingsOutOfFuntions/C++ 20 Template Project/main.cpp"
+        20.FunctionOverloading/20.2OverloadingWithDifferentParameters/main.cpp
+        20.FunctionOverloading/20.3OverloadingWithPointerParameters/main.cpp
+        20.FunctionOverloading/20.4OverloadingWithReferenceParameters/main.cpp
+        20.FunctionOverloading/20.5OverloadingWithConstParametersByValue/main.cpp
+        20.FunctionOverloading/20.6OverloadingWithConstPointerAndPointerToConstParameters/main.cpp
+        20.FunctionOverloading/20.7OverloadingWithConstReferences/main.cpp
+        20.FunctionOverloading/20.8OverloadsWithDefaultParameters/main.cpp
+        "20.FunctionOverloading/C++ 20 Template Project/main.cpp"
+        21.LambdaFunctions/21.2DeclaringAndUsingLambdas/main.cpp
+        21.LambdaFunctions/21.3CaptureLists/main.cpp
+        21.LambdaFunctions/21.4CaptureAllLists/main.cpp
+        "21.LambdaFunctions/C++ 20 Template Project/main.cpp"
+        22.FunctionsTheMisfits/22.2StaticVariables/main.cpp
+        22.FunctionsTheMisfits/22.3InlineFunctions/main.cpp
+        22.FunctionsTheMisfits/22.4RecursiveFunctions/main.cpp
+        "22.FunctionsTheMisfits/C++ 20 Template Project/main.cpp"
+        23.FunctionCallStackD_ebugging/23.4D_ebuggingInV_S_C0de/main.cpp
+        23.FunctionCallStackD_ebugging/23.7D_ebuggingArraysLoopsAndPointers/main.cpp
+        "23.FunctionCallStackD_ebugging/C++ 20 Template Project/main.cpp"
+        24.FunctionTemplates/24.10DecltypeAuto/main.cpp
+        24.FunctionTemplates/24.11DefaultArguments/main.cpp
+        24.FunctionTemplates/24.12NonTypeTemplateParameters/main.cpp
+        24.FunctionTemplates/24.13AutoFunctionTemplates/main.cpp
+        24.FunctionTemplates/24.14NamedTemplateParametersForLambdas/main.cpp
+        24.FunctionTemplates/24.15TypeTraits/main.cpp
+        24.FunctionTemplates/24.16ConstexprIf/main.cpp
+        24.FunctionTemplates/24.2TryingOutFunctionTemplates/main.cpp
+        24.FunctionTemplates/24.3TemplateTypeDeductionAndExplicitArguments/main.cpp
+        24.FunctionTemplates/24.4TemplateTypeParametersByReference/main.cpp
+        24.FunctionTemplates/24.5TemplateSpecialization/main.cpp
+        24.FunctionTemplates/24.6FunctionTemplatesWithOverloading/main.cpp
+        24.FunctionTemplates/24.7FunctionTemplatesWithMultipleParameters/main.cpp
+        24.FunctionTemplates/24.8TemplateReturnTypeDeductionWithAuto/main.cpp
+        24.FunctionTemplates/24.9DecltypeAndTrailingReturnTypes/main.cpp
+        "24.FunctionTemplates/C++ 20 Template Project/main.cpp"
+        25.Concepts/25.02UsingConcepts/main.cpp
+        25.Concepts/25.03BuildingYourOwnConcepts/main.cpp
+        25.Concepts/25.04ZoomingInOnRequiresClause/main.cpp
+        25.Concepts/25.05CombiningConcepts/main.cpp
+        25.Concepts/25.06ConceptsAndAuto/main.cpp
+        "25.Concepts/C++ 20 Template Project/main.cpp"
+        26.Classes/26.10OrderOfConstructorDestructorCalls/main.cpp
+        26.Classes/26.11ThisPointer/main.cpp
+        26.Classes/26.12Struct/main.cpp
+        26.Classes/26.13.SizeOfClassObjects/main.cpp
+        26.Classes/26.2YourFirstClass/main.cpp
+        26.Classes/26.3Constructors/main.cpp
+        26.Classes/26.4DefaultedConstructors/main.cpp
+        26.Classes/26.5SettersAndGetters/main.cpp
+        26.Classes/26.6ClassAcrossMultipleFiles/constants.h
+        26.Classes/26.6ClassAcrossMultipleFiles/cylinder.cpp
+        26.Classes/26.6ClassAcrossMultipleFiles/cylinder.h
+        26.Classes/26.6ClassAcrossMultipleFiles/main.cpp
+        26.Classes/26.8ManagingClassObjectsThroughPointers/constants.h
+        26.Classes/26.8ManagingClassObjectsThroughPointers/cylinder.cpp
+        26.Classes/26.8ManagingClassObjectsThroughPointers/cylinder.h
+        26.Classes/26.8ManagingClassObjectsThroughPointers/main.cpp
+        26.Classes/26.9Destructors/main.cpp
+        "26.Classes/C++ 20 Template Project/main.cpp"
+        27.ZoomingInOnClassObjects/27.2ConstObjects/dog.cpp
+        27.ZoomingInOnClassObjects/27.2ConstObjects/dog.h
+        27.ZoomingInOnClassObjects/27.2ConstObjects/main.cpp
+        27.ZoomingInOnClassObjects/27.3ConstObjectsAsFunctionParameters/dog.cpp
+        27.ZoomingInOnClassObjects/27.3ConstObjectsAsFunctionParameters/dog.h
+        27.ZoomingInOnClassObjects/27.3ConstObjectsAsFunctionParameters/main.cpp
+        27.ZoomingInOnClassObjects/27.4ConstMemberFunctions/dog.cpp
+        27.ZoomingInOnClassObjects/27.4ConstMemberFunctions/dog.h
+        27.ZoomingInOnClassObjects/27.4ConstMemberFunctions/main.cpp
+        27.ZoomingInOnClassObjects/27.5GettersThatDoubleAsSetters/dog.cpp
+        27.ZoomingInOnClassObjects/27.5GettersThatDoubleAsSetters/dog.h
+        27.ZoomingInOnClassObjects/27.5GettersThatDoubleAsSetters/main.cpp
+        27.ZoomingInOnClassObjects/27.6DanglingPointersAndReferences/dog.cpp
+        27.ZoomingInOnClassObjects/27.6DanglingPointersAndReferences/dog.h
+        27.ZoomingInOnClassObjects/27.6DanglingPointersAndReferences/main.cpp
+        27.ZoomingInOnClassObjects/27.8MutableObjects/dog.cpp
+        27.ZoomingInOnClassObjects/27.8MutableObjects/dog.h
+        27.ZoomingInOnClassObjects/27.8MutableObjects/main.cpp
+        27.ZoomingInOnClassObjects/27.9StructuredBindings/main.cpp
+        "27.ZoomingInOnClassObjects/C++ 20 Template Project/main.cpp"
+        28.DivingDeepIntoConstructorsAndInitialization/28.10MoveConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.10MoveConstructors/point.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.10MoveConstructors/point.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.11DeletedConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.11DeletedConstructors/point.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.11DeletedConstructors/point.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.12InitializerListConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.13AggregateInitialization/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.14DesignatedInitializers/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.15UniformInitializationForAggregates/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.2DefaultParametersForConstructors/cylinder.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.2DefaultParametersForConstructors/cylinder.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.2DefaultParametersForConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.3InitializerListsForConstructors/cylinder.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.3InitializerListsForConstructors/cylinder.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.3InitializerListsForConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.5ExplicitConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.5ExplicitConstructors/square.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.5ExplicitConstructors/square.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.6ConstructorDelegation/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.6ConstructorDelegation/square.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.6ConstructorDelegation/square.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.7CopyConstructors/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.7CopyConstructors/person.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.7CopyConstructors/person.h
+        28.DivingDeepIntoConstructorsAndInitialization/28.8ObjectsStoredInArraysAreCopies/main.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.8ObjectsStoredInArraysAreCopies/person.cpp
+        28.DivingDeepIntoConstructorsAndInitialization/28.8ObjectsStoredInArraysAreCopies/person.h
+        "28.DivingDeepIntoConstructorsAndInitialization/C++ 20 Template Project/main.cpp"
+        29.Friends/29.2FriendFunctions/main.cpp
+        29.Friends/29.3FriendClasses/main.cpp
+        "29.Friends/C++ 20 Template Project/main.cpp"
+        30.ConstAndStaticMembers/30.10NestedClasses/main.cpp
+        30.ConstAndStaticMembers/30.10NestedClasses/outer.cpp
+        30.ConstAndStaticMembers/30.10NestedClasses/outer.h
+        30.ConstAndStaticMembers/30.11InClassMemberVariableInitialization/integer.cpp
+        30.ConstAndStaticMembers/30.11InClassMemberVariableInitialization/integer.h
+        30.ConstAndStaticMembers/30.11InClassMemberVariableInitialization/main.cpp
+        30.ConstAndStaticMembers/30.3StaticMemberVariables/main.cpp
+        30.ConstAndStaticMembers/30.3StaticMemberVariables/point.cpp
+        30.ConstAndStaticMembers/30.3StaticMemberVariables/point.h
+        30.ConstAndStaticMembers/30.3StaticMemberVariables/some_other_file.cpp
+        30.ConstAndStaticMembers/30.4InlineStaticMemberVariables/main.cpp
+        30.ConstAndStaticMembers/30.4InlineStaticMemberVariables/point.cpp
+        30.ConstAndStaticMembers/30.4InlineStaticMemberVariables/point.h
+        30.ConstAndStaticMembers/30.5StaticConstants/cylinder.cpp
+        30.ConstAndStaticMembers/30.5StaticConstants/cylinder.h
+        30.ConstAndStaticMembers/30.5StaticConstants/main.cpp
+        30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17/bird.cpp
+        30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17/bird.h
+        30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17/cylinder.cpp
+        30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17/cylinder.h
+        30.ConstAndStaticMembers/30.6StaticConstantsPreCpp17/main.cpp
+        30.ConstAndStaticMembers/30.7MemberVariablesOfTypeSelf/main.cpp
+        30.ConstAndStaticMembers/30.7MemberVariablesOfTypeSelf/point.cpp
+        30.ConstAndStaticMembers/30.7MemberVariablesOfTypeSelf/point.h
+        30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes/integer.cpp
+        30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes/integer.h
+        30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes/main.cpp
+        30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes/point.cpp
+        30.ConstAndStaticMembers/30.8MemberVariablesOfOtherTypes/point.h
+        30.ConstAndStaticMembers/30.9StaticMemberFunctions/main.cpp
+        30.ConstAndStaticMembers/30.9StaticMemberFunctions/point.cpp
+        30.ConstAndStaticMembers/30.9StaticMemberFunctions/point.h
+        "30.ConstAndStaticMembers/C++ 20 Template Project/main.cpp"
+        31.Namespaces/31.2CreatingNamespaces/main.cpp
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/cylinder.cpp
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/cylinder.h
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/line.cpp
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/line.h
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/main.cpp
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/point.cpp
+        31.Namespaces/31.3NamespacesAcrossMultipleFiles/point.h
+        31.Namespaces/31.4DefaultGlobalNamespace/main.cpp
+        31.Namespaces/31.5BuiltInNamespaces/main.cpp
+        31.Namespaces/31.6UsingDeclarations/cylinder.cpp
+        31.Namespaces/31.6UsingDeclarations/cylinder.h
+        31.Namespaces/31.6UsingDeclarations/line.cpp
+        31.Namespaces/31.6UsingDeclarations/line.h
+        31.Namespaces/31.6UsingDeclarations/main.cpp
+        31.Namespaces/31.6UsingDeclarations/operations.cpp
+        31.Namespaces/31.6UsingDeclarations/operations.h
+        31.Namespaces/31.6UsingDeclarations/point.cpp
+        31.Namespaces/31.6UsingDeclarations/point.h
+        31.Namespaces/31.7AnonymousNamespaces/main.cpp
+        31.Namespaces/31.7AnonymousNamespaces/some_other_file.cpp
+        31.Namespaces/31.8NestedNamespaces/main.cpp
+        31.Namespaces/31.9NamespaceAliases/main.cpp
+        "31.Namespaces/C++ 20 Template Project/main.cpp"
+        32.ProgramsWithMultipleFiles/32.10InlineVersusStatic/main.cpp
+        32.ProgramsWithMultipleFiles/32.10InlineVersusStatic/utility1.cpp
+        32.ProgramsWithMultipleFiles/32.10InlineVersusStatic/utility2.cpp
+        32.ProgramsWithMultipleFiles/32.11ForwardDeclarations/dog.cpp
+        32.ProgramsWithMultipleFiles/32.11ForwardDeclarations/dog.h
+        32.ProgramsWithMultipleFiles/32.11ForwardDeclarations/farm.cpp
+        32.ProgramsWithMultipleFiles/32.11ForwardDeclarations/farm.h
+        32.ProgramsWithMultipleFiles/32.11ForwardDeclarations/main.cpp
+        32.ProgramsWithMultipleFiles/32.2CompilingAndLinking_Model/main.cpp
+        32.ProgramsWithMultipleFiles/32.2CompilingAndLinking_Model/utilities.cpp
+        32.ProgramsWithMultipleFiles/32.2CompilingAndLinking_Model/utilities.h
+        32.ProgramsWithMultipleFiles/32.4DeclarationsAndDefinitions/main.cpp
+        32.ProgramsWithMultipleFiles/32.4DeclarationsAndDefinitions/person.h
+        32.ProgramsWithMultipleFiles/32.4DeclarationsAndDefinitions/some_other_file.cpp
+        32.ProgramsWithMultipleFiles/32.5OneDefinitionRule/main.cpp
+        32.ProgramsWithMultipleFiles/32.5OneDefinitionRule/person.h
+        32.ProgramsWithMultipleFiles/32.5OneDefinitionRule/some_other_file.cpp
+        32.ProgramsWithMultipleFiles/32.6Linkage/main.cpp
+        32.ProgramsWithMultipleFiles/32.6Linkage/some_other_file.cpp
+        32.ProgramsWithMultipleFiles/32.8FlippingLinkage/main.cpp
+        32.ProgramsWithMultipleFiles/32.8FlippingLinkage/some_other_file.cpp
+        32.ProgramsWithMultipleFiles/32.9InlineVariablesAndFunctions/main.cpp
+        32.ProgramsWithMultipleFiles/32.9InlineVariablesAndFunctions/utility.h
+        32.ProgramsWithMultipleFiles/32.9InlineVariablesAndFunctions/utility1.cpp
+        32.ProgramsWithMultipleFiles/32.9InlineVariablesAndFunctions/utility2.cpp
+        "32.ProgramsWithMultipleFiles/C++ 20 Template Project/main.cpp"
+        33.SmartPointers/33.2UniquePointers/dog.cpp
+        33.SmartPointers/33.2UniquePointers/dog.h
+        33.SmartPointers/33.2UniquePointers/main.cpp
+        33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes/dog.cpp
+        33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes/dog.h
+        33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes/main.cpp
+        33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes/person.cpp
+        33.SmartPointers/33.3UniquePointersAsFunctionParametersAndReturnTypes/person.h
+        33.SmartPointers/33.4UniquePointersAndArrays/dog.cpp
+        33.SmartPointers/33.4UniquePointersAndArrays/dog.h
+        33.SmartPointers/33.4UniquePointersAndArrays/main.cpp
+        33.SmartPointers/33.5SharedPointers/dog.cpp
+        33.SmartPointers/33.5SharedPointers/dog.h
+        33.SmartPointers/33.5SharedPointers/main.cpp
+        33.SmartPointers/33.6SharedPointersFromUniquePointers/dog.cpp
+        33.SmartPointers/33.6SharedPointersFromUniquePointers/dog.h
+        33.SmartPointers/33.6SharedPointersFromUniquePointers/main.cpp
+        33.SmartPointers/33.7SharedPointersWithArrays/dog.cpp
+        33.SmartPointers/33.7SharedPointersWithArrays/dog.h
+        33.SmartPointers/33.7SharedPointersWithArrays/main.cpp
+        33.SmartPointers/33.8SharedPointersAsFunctionParametersAndReturnTypes/dog.cpp
+        33.SmartPointers/33.8SharedPointersAsFunctionParametersAndReturnTypes/dog.h
+        33.SmartPointers/33.8SharedPointersAsFunctionParametersAndReturnTypes/main.cpp
+        33.SmartPointers/33.9WeakPointers/dog.cpp
+        33.SmartPointers/33.9WeakPointers/dog.h
+        33.SmartPointers/33.9WeakPointers/main.cpp
+        33.SmartPointers/33.9WeakPointers/person.cpp
+        33.SmartPointers/33.9WeakPointers/person.h
+        "33.SmartPointers/C++ 20 Template Project/main.cpp"
+        34.OperatorOverloading/34.10CompoundOperators_ReusingOperators/main.cpp
+        34.OperatorOverloading/34.10CompoundOperators_ReusingOperators/point.cpp
+        34.OperatorOverloading/34.10CompoundOperators_ReusingOperators/point.h
+        34.OperatorOverloading/34.11CustomTypeConversions/main.cpp
+        34.OperatorOverloading/34.11CustomTypeConversions/number.cpp
+        34.OperatorOverloading/34.11CustomTypeConversions/number.h
+        34.OperatorOverloading/34.11CustomTypeConversions/point.cpp
+        34.OperatorOverloading/34.11CustomTypeConversions/point.h
+        34.OperatorOverloading/34.12ImplicitConversionsWithOverloadedBinaryOperators/main.cpp
+        34.OperatorOverloading/34.12ImplicitConversionsWithOverloadedBinaryOperators/number.cpp
+        34.OperatorOverloading/34.12ImplicitConversionsWithOverloadedBinaryOperators/number.h
+        34.OperatorOverloading/34.13UnaryPrefixIncrementOperatorAsMember/main.cpp
+        34.OperatorOverloading/34.13UnaryPrefixIncrementOperatorAsMember/point.cpp
+        34.OperatorOverloading/34.13UnaryPrefixIncrementOperatorAsMember/point.h
+        34.OperatorOverloading/34.14UnaryPrefixIncrementOperatorAsNonMember/main.cpp
+        34.OperatorOverloading/34.14UnaryPrefixIncrementOperatorAsNonMember/point.cpp
+        34.OperatorOverloading/34.14UnaryPrefixIncrementOperatorAsNonMember/point.h
+        34.OperatorOverloading/34.15UnaryPostfixIncrementOperator/main.cpp
+        34.OperatorOverloading/34.15UnaryPostfixIncrementOperator/point.cpp
+        34.OperatorOverloading/34.15UnaryPostfixIncrementOperator/point.h
+        34.OperatorOverloading/34.16UnaryPrefixPostfixDecrementOperator/main.cpp
+        34.OperatorOverloading/34.16UnaryPrefixPostfixDecrementOperator/point.cpp
+        34.OperatorOverloading/34.16UnaryPrefixPostfixDecrementOperator/point.h
+        34.OperatorOverloading/34.17CopyAssignmentOperator/main.cpp
+        34.OperatorOverloading/34.17CopyAssignmentOperator/point.cpp
+        34.OperatorOverloading/34.17CopyAssignmentOperator/point.h
+        34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes/car.cpp
+        34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes/car.h
+        34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes/main.cpp
+        34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes/point.cpp
+        34.OperatorOverloading/34.18CopyAssignmentOperatorForOtherTypes/point.h
+        34.OperatorOverloading/34.19TypeConversionsRecap/main.cpp
+        34.OperatorOverloading/34.19TypeConversionsRecap/number.cpp
+        34.OperatorOverloading/34.19TypeConversionsRecap/number.h
+        34.OperatorOverloading/34.19TypeConversionsRecap/point.cpp
+        34.OperatorOverloading/34.19TypeConversionsRecap/point.h
+        34.OperatorOverloading/34.20Functors/main.cpp
+        34.OperatorOverloading/34.2AdditionOperatorAsMember/main.cpp
+        34.OperatorOverloading/34.2AdditionOperatorAsMember/point.cpp
+        34.OperatorOverloading/34.2AdditionOperatorAsMember/point.h
+        34.OperatorOverloading/34.3AdditionOperatorAsNonMember/main.cpp
+        34.OperatorOverloading/34.3AdditionOperatorAsNonMember/point.cpp
+        34.OperatorOverloading/34.3AdditionOperatorAsNonMember/point.h
+        34.OperatorOverloading/34.4SubscriptOperatorReading/main.cpp
+        34.OperatorOverloading/34.4SubscriptOperatorReading/point.cpp
+        34.OperatorOverloading/34.4SubscriptOperatorReading/point.h
+        34.OperatorOverloading/34.5SubscriptOperatorReadingWritting/main.cpp
+        34.OperatorOverloading/34.5SubscriptOperatorReadingWritting/point.cpp
+        34.OperatorOverloading/34.5SubscriptOperatorReadingWritting/point.h
+        34.OperatorOverloading/34.6SubscriptOperatorForCollectionTypes/main.cpp
+        34.OperatorOverloading/34.6SubscriptOperatorForCollectionTypes/scores.cpp
+        34.OperatorOverloading/34.6SubscriptOperatorForCollectionTypes/scores.h
+        34.OperatorOverloading/34.7StreamInsertionOperator/main.cpp
+        34.OperatorOverloading/34.7StreamInsertionOperator/point.cpp
+        34.OperatorOverloading/34.7StreamInsertionOperator/point.h
+        34.OperatorOverloading/34.8StreamExtractionOperator/main.cpp
+        34.OperatorOverloading/34.8StreamExtractionOperator/point.cpp
+        34.OperatorOverloading/34.8StreamExtractionOperator/point.h
+        34.OperatorOverloading/34.9OtherArithmeticOperators/main.cpp
+        34.OperatorOverloading/34.9OtherArithmeticOperators/point.cpp
+        34.OperatorOverloading/34.9OtherArithmeticOperators/point.h
+        "34.OperatorOverloading/C++ 20 Template Project/main.cpp"
+        35.LogicalOperatorsAndThreeWayComparison/35.10CustomSpaceshipOperatorForOrdering/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.10CustomSpaceshipOperatorForOrdering/point.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.10CustomSpaceshipOperatorForOrdering/point.h
+        35.LogicalOperatorsAndThreeWayComparison/35.11LogicalOperatorsSimplified/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.11LogicalOperatorsSimplified/number.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.11LogicalOperatorsSimplified/number.h
+        35.LogicalOperatorsAndThreeWayComparison/35.12SpaceshipAsNonMember/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.12SpaceshipAsNonMember/number.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.12SpaceshipAsNonMember/number.h
+        35.LogicalOperatorsAndThreeWayComparison/35.13ZoomingInOnWeakOrderingExample1/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.14ZoomingInOnWeakOrderingExample2/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.15ZoomingInOnPartialOrderingExample/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.2AllLogicalOperators/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.2AllLogicalOperators/point.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.2AllLogicalOperators/point.h
+        35.LogicalOperatorsAndThreeWayComparison/35.3Rel_OpsNamespace/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.3Rel_OpsNamespace/my_utility.h
+        35.LogicalOperatorsAndThreeWayComparison/35.3Rel_OpsNamespace/point.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.3Rel_OpsNamespace/point.h
+        35.LogicalOperatorsAndThreeWayComparison/35.4LogicalOperatorsWithImplicitConversions/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.4LogicalOperatorsWithImplicitConversions/number.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.4LogicalOperatorsWithImplicitConversions/number.h
+        35.LogicalOperatorsAndThreeWayComparison/35.5ThreeWayComparisonOperator/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.6DefaultedEqualityOperator/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.7CustomEqualityOperator/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.7CustomEqualityOperator/point.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.7CustomEqualityOperator/point.h
+        35.LogicalOperatorsAndThreeWayComparison/35.8DefaultOrderingWithSpaceship/main.cpp
+        35.LogicalOperatorsAndThreeWayComparison/35.9MembersWithoutSpaceshipOperator/main.cpp
+        "35.LogicalOperatorsAndThreeWayComparison/C++ 20 Template Project/main.cpp"
+        36.Inheritance/36.10CopyConstructorsWithInheritance/civilengineer.cpp
+        36.Inheritance/36.10CopyConstructorsWithInheritance/civilengineer.h
+        36.Inheritance/36.10CopyConstructorsWithInheritance/engineer.cpp
+        36.Inheritance/36.10CopyConstructorsWithInheritance/engineer.h
+        36.Inheritance/36.10CopyConstructorsWithInheritance/main.cpp
+        36.Inheritance/36.10CopyConstructorsWithInheritance/person.cpp
+        36.Inheritance/36.10CopyConstructorsWithInheritance/person.h
+        36.Inheritance/36.11InheritingBaseConstructors/engineer.cpp
+        36.Inheritance/36.11InheritingBaseConstructors/engineer.h
+        36.Inheritance/36.11InheritingBaseConstructors/main.cpp
+        36.Inheritance/36.11InheritingBaseConstructors/person.cpp
+        36.Inheritance/36.11InheritingBaseConstructors/person.h
+        36.Inheritance/36.12InheritanceAndDestructors/civilengineer.cpp
+        36.Inheritance/36.12InheritanceAndDestructors/civilengineer.h
+        36.Inheritance/36.12InheritanceAndDestructors/engineer.cpp
+        36.Inheritance/36.12InheritanceAndDestructors/engineer.h
+        36.Inheritance/36.12InheritanceAndDestructors/main.cpp
+        36.Inheritance/36.12InheritanceAndDestructors/person.cpp
+        36.Inheritance/36.12InheritanceAndDestructors/person.h
+        36.Inheritance/36.13ReusedSymbolsInInheritance/child.cpp
+        36.Inheritance/36.13ReusedSymbolsInInheritance/child.h
+        36.Inheritance/36.13ReusedSymbolsInInheritance/main.cpp
+        36.Inheritance/36.13ReusedSymbolsInInheritance/parent.cpp
+        36.Inheritance/36.13ReusedSymbolsInInheritance/parent.h
+        36.Inheritance/36.2FirstTryOnInheritance/main.cpp
+        36.Inheritance/36.2FirstTryOnInheritance/person.cpp
+        36.Inheritance/36.2FirstTryOnInheritance/person.h
+        36.Inheritance/36.2FirstTryOnInheritance/player.cpp
+        36.Inheritance/36.2FirstTryOnInheritance/player.h
+        36.Inheritance/36.3ProtectedMembers/main.cpp
+        36.Inheritance/36.3ProtectedMembers/person.cpp
+        36.Inheritance/36.3ProtectedMembers/person.h
+        36.Inheritance/36.3ProtectedMembers/player.cpp
+        36.Inheritance/36.3ProtectedMembers/player.h
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/engineer.cpp
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/engineer.h
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/main.cpp
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/nurse.cpp
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/nurse.h
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/person.cpp
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/person.h
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/player.cpp
+        36.Inheritance/36.5BaseClassAccessSpecifiersADemo/player.h
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/civilengineer.cpp
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/civilengineer.h
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/engineer.cpp
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/engineer.h
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/main.cpp
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/person.cpp
+        36.Inheritance/36.6ClosingInOnPrivateInheritance/person.h
+        36.Inheritance/36.7ResurectingMembersBackInContext/civilengineer.cpp
+        36.Inheritance/36.7ResurectingMembersBackInContext/civilengineer.h
+        36.Inheritance/36.7ResurectingMembersBackInContext/engineer.cpp
+        36.Inheritance/36.7ResurectingMembersBackInContext/engineer.h
+        36.Inheritance/36.7ResurectingMembersBackInContext/main.cpp
+        36.Inheritance/36.7ResurectingMembersBackInContext/person.cpp
+        36.Inheritance/36.7ResurectingMembersBackInContext/person.h
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/civilengineer.cpp
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/civilengineer.h
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/engineer.cpp
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/engineer.h
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/main.cpp
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/person.cpp
+        36.Inheritance/36.8DefaultArgConstructorsWithInheritance/person.h
+        36.Inheritance/36.9ConstructorsWithInheritance/civilengineer.cpp
+        36.Inheritance/36.9ConstructorsWithInheritance/civilengineer.h
+        36.Inheritance/36.9ConstructorsWithInheritance/engineer.cpp
+        36.Inheritance/36.9ConstructorsWithInheritance/engineer.h
+        36.Inheritance/36.9ConstructorsWithInheritance/main.cpp
+        36.Inheritance/36.9ConstructorsWithInheritance/person.cpp
+        36.Inheritance/36.9ConstructorsWithInheritance/person.h
+        "36.Inheritance/C++ 20 Template Project/main.cpp"
+        37.Polymorphism/37.10Final/animal.cpp
+        37.Polymorphism/37.10Final/animal.h
+        37.Polymorphism/37.10Final/bird.cpp
+        37.Polymorphism/37.10Final/bird.h
+        37.Polymorphism/37.10Final/bulldog.cpp
+        37.Polymorphism/37.10Final/bulldog.h
+        37.Polymorphism/37.10Final/cat.cpp
+        37.Polymorphism/37.10Final/cat.h
+        37.Polymorphism/37.10Final/crow.cpp
+        37.Polymorphism/37.10Final/crow.h
+        37.Polymorphism/37.10Final/dog.cpp
+        37.Polymorphism/37.10Final/dog.h
+        37.Polymorphism/37.10Final/feline.cpp
+        37.Polymorphism/37.10Final/feline.h
+        37.Polymorphism/37.10Final/main.cpp
+        37.Polymorphism/37.10Final/pigeon.cpp
+        37.Polymorphism/37.10Final/pigeon.h
+        37.Polymorphism/37.10Final/wildcat.cpp
+        37.Polymorphism/37.10Final/wildcat.h
+        37.Polymorphism/37.11FinalAndOverrideAreNotKeywords/main.cpp
+        37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers/ellipse.cpp
+        37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers/ellipse.h
+        37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers/main.cpp
+        37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers/shape.cpp
+        37.Polymorphism/37.12PolymorphicFunctionsAndAccessSpecifiers/shape.h
+        37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers/ellipse.cpp
+        37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers/ellipse.h
+        37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers/main.cpp
+        37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers/shape.cpp
+        37.Polymorphism/37.13NonPolymorphicFunctionsAndAccessSpecifiers/shape.h
+        37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments/base.cpp
+        37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments/base.h
+        37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments/derived.cpp
+        37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments/derived.h
+        37.Polymorphism/37.14VirtualFunctionsWithDefaultArguments/main.cpp
+        37.Polymorphism/37.15VirtualDestructors/animal.cpp
+        37.Polymorphism/37.15VirtualDestructors/animal.h
+        37.Polymorphism/37.15VirtualDestructors/dog.cpp
+        37.Polymorphism/37.15VirtualDestructors/dog.h
+        37.Polymorphism/37.15VirtualDestructors/feline.cpp
+        37.Polymorphism/37.15VirtualDestructors/feline.h
+        37.Polymorphism/37.15VirtualDestructors/main.cpp
+        37.Polymorphism/37.16DynamicCasts/animal.cpp
+        37.Polymorphism/37.16DynamicCasts/animal.h
+        37.Polymorphism/37.16DynamicCasts/dog.cpp
+        37.Polymorphism/37.16DynamicCasts/dog.h
+        37.Polymorphism/37.16DynamicCasts/feline.cpp
+        37.Polymorphism/37.16DynamicCasts/feline.h
+        37.Polymorphism/37.16DynamicCasts/main.cpp
+        37.Polymorphism/37.17PolymorphicFunctionsAndDestructors/main.cpp
+        37.Polymorphism/37.18TypeIdOperator/main.cpp
+        37.Polymorphism/37.18TypeIdOperator/nonpolymorphic.h
+        37.Polymorphism/37.18TypeIdOperator/polymorphic.h
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/circle.cpp
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/circle.h
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/main.cpp
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/rectangle.cpp
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/rectangle.h
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/shape.cpp
+        37.Polymorphism/37.19PureVirtualFunctionsAndAbstractClasses/shape.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/animal.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/animal.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/bird.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/bird.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/cat.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/cat.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/crow.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/crow.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/dog.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/dog.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/feline.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/feline.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/main.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/pigeon.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/pigeon.h
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/stream_insertable.cpp
+        37.Polymorphism/37.20AbstractClassesAsInterfaces/stream_insertable.h
+        37.Polymorphism/37.2StaticBindingWithInheritance/circle.cpp
+        37.Polymorphism/37.2StaticBindingWithInheritance/circle.h
+        37.Polymorphism/37.2StaticBindingWithInheritance/main.cpp
+        37.Polymorphism/37.2StaticBindingWithInheritance/oval.cpp
+        37.Polymorphism/37.2StaticBindingWithInheritance/oval.h
+        37.Polymorphism/37.2StaticBindingWithInheritance/shape.cpp
+        37.Polymorphism/37.2StaticBindingWithInheritance/shape.h
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/circle.cpp
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/circle.h
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/main.cpp
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/oval.cpp
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/oval.h
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/shape.cpp
+        37.Polymorphism/37.3PolymorphismWithVirtualFunctions/shape.h
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/circle.cpp
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/circle.h
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/main.cpp
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/oval.cpp
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/oval.h
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/shape.cpp
+        37.Polymorphism/37.4SizeOfPolymorphicObjectsAndSlicing/shape.h
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/circle.cpp
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/circle.h
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/main.cpp
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/oval.cpp
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/oval.h
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/shape.cpp
+        37.Polymorphism/37.5PolymorphicObjectsStoredInCollections/shape.h
+        37.Polymorphism/37.6Override/circle.cpp
+        37.Polymorphism/37.6Override/circle.h
+        37.Polymorphism/37.6Override/main.cpp
+        37.Polymorphism/37.6Override/oval.cpp
+        37.Polymorphism/37.6Override/oval.h
+        37.Polymorphism/37.6Override/shape.cpp
+        37.Polymorphism/37.6Override/shape.h
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/circle.cpp
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/circle.h
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/main.cpp
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/oval.cpp
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/oval.h
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/shape.cpp
+        37.Polymorphism/37.7OverloadingOverridingAndHiding/shape.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/animal.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/animal.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/bird.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/bird.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/cat.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/cat.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/crow.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/crow.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/dog.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/dog.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/feline.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/feline.h
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/main.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/pigeon.cpp
+        37.Polymorphism/37.8PolymorphismAtDifferentLevels/pigeon.h
+        37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers/ellipse.cpp
+        37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers/ellipse.h
+        37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers/main.cpp
+        37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers/shape.cpp
+        37.Polymorphism/37.9InheritanceAndPolymorphismWithStaticMembers/shape.h
+        "37.Polymorphism/C++ 20 Template Project/main.cpp"
+        38.Exceptions/38.10RethrownExceptions/exceptions.h
+        38.Exceptions/38.10RethrownExceptions/main.cpp
+        38.Exceptions/38.11ProgramCustomTermimation/main.cpp
+        38.Exceptions/38.12EllipsisCatchAllBlock/exceptions.h
+        38.Exceptions/38.12EllipsisCatchAllBlock/main.cpp
+        38.Exceptions/38.13NoexceptSpecifier/main.cpp
+        38.Exceptions/38.14ExceptionsInDestructors/main.cpp
+        38.Exceptions/38.16CatchingStandardExceptions/main.cpp
+        38.Exceptions/38.17ThrowingStdExceptions/main.cpp
+        38.Exceptions/38.18DerivingFromStandardExceptions/main.cpp
+        38.Exceptions/38.2TryCatchBlocks/main.cpp
+        38.Exceptions/38.3TheNeedForExceptions/main.cpp
+        38.Exceptions/38.4HandlingExceptionsAtDifferentLevels/main.cpp
+        38.Exceptions/38.5MultipleHandlersForExceptions/main.cpp
+        38.Exceptions/38.6NestedTryBlocks/main.cpp
+        38.Exceptions/38.7ThrowingClassObjects/main.cpp
+        38.Exceptions/38.8ExceptionsAsClassObjectsWithInheritanceHierarchies/exceptions.h
+        38.Exceptions/38.8ExceptionsAsClassObjectsWithInheritanceHierarchies/main.cpp
+        38.Exceptions/38.9PolymorphicExceptions/exceptions.h
+        38.Exceptions/38.9PolymorphicExceptions/main.cpp
+        "38.Exceptions/C++ 20 Template Project/main.cpp"
+        39.Practice-BoxContainerType/39.2ConstructingDestroying/boxcontainer.cpp
+        39.Practice-BoxContainerType/39.2ConstructingDestroying/boxcontainer.h
+        39.Practice-BoxContainerType/39.2ConstructingDestroying/main.cpp
+        39.Practice-BoxContainerType/39.2ConstructingDestroying/stream_insertable.cpp
+        39.Practice-BoxContainerType/39.2ConstructingDestroying/stream_insertable.h
+        39.Practice-BoxContainerType/39.3AddingItems/boxcontainer.cpp
+        39.Practice-BoxContainerType/39.3AddingItems/boxcontainer.h
+        39.Practice-BoxContainerType/39.3AddingItems/main.cpp
+        39.Practice-BoxContainerType/39.3AddingItems/stream_insertable.cpp
+        39.Practice-BoxContainerType/39.3AddingItems/stream_insertable.h
+        39.Practice-BoxContainerType/39.4RemovingItems/boxcontainer.cpp
+        39.Practice-BoxContainerType/39.4RemovingItems/boxcontainer.h
+        39.Practice-BoxContainerType/39.4RemovingItems/main.cpp
+        39.Practice-BoxContainerType/39.4RemovingItems/stream_insertable.cpp
+        39.Practice-BoxContainerType/39.4RemovingItems/stream_insertable.h
+        39.Practice-BoxContainerType/39.5OtherOperators/boxcontainer.cpp
+        39.Practice-BoxContainerType/39.5OtherOperators/boxcontainer.h
+        39.Practice-BoxContainerType/39.5OtherOperators/main.cpp
+        39.Practice-BoxContainerType/39.5OtherOperators/stream_insertable.cpp
+        39.Practice-BoxContainerType/39.5OtherOperators/stream_insertable.h
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/charcontainer.cpp
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/charcontainer.h
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/doublecontainer.cpp
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/doublecontainer.h
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/intcontainer.cpp
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/intcontainer.h
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/main.cpp
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/stream_insertable.cpp
+        39.Practice-BoxContainerType/39.7StoringInDifferentTypes/stream_insertable.h
+        "39.Practice-BoxContainerType/C++ 20 Template Project/main.cpp"
+        40.ClassTemplates/40.10FriendFunctionsForClassTemplates/main.cpp
+        40.ClassTemplates/40.11StreamInsertionOperatorForClassTemplates/boxcontainer.cpp
+        40.ClassTemplates/40.11StreamInsertionOperatorForClassTemplates/boxcontainer.h
+        40.ClassTemplates/40.11StreamInsertionOperatorForClassTemplates/main.cpp
+        40.ClassTemplates/40.12ClassTemplatesWithTypeTraitsAndStaticAsserts/boxcontainer.cpp
+        40.ClassTemplates/40.12ClassTemplatesWithTypeTraitsAndStaticAsserts/boxcontainer.h
+        40.ClassTemplates/40.12ClassTemplatesWithTypeTraitsAndStaticAsserts/main.cpp
+        40.ClassTemplates/40.13ClassTemplatesWithConcepts/boxcontainer.cpp
+        40.ClassTemplates/40.13ClassTemplatesWithConcepts/boxcontainer.h
+        40.ClassTemplates/40.13ClassTemplatesWithConcepts/main.cpp
+        40.ClassTemplates/40.14BuiltInConcepts/boxcontainer.cpp
+        40.ClassTemplates/40.14BuiltInConcepts/boxcontainer.h
+        40.ClassTemplates/40.14BuiltInConcepts/main.cpp
+        40.ClassTemplates/40.15ConceptsExample1/main.cpp
+        40.ClassTemplates/40.16ConceptsExample2/main.cpp
+        40.ClassTemplates/40.2YourFirstClassTemplate/boxcontainer.cpp
+        40.ClassTemplates/40.2YourFirstClassTemplate/boxcontainer.h
+        40.ClassTemplates/40.2YourFirstClassTemplate/main.cpp
+        40.ClassTemplates/40.4NonTypeTemplateParameters/boxcontainer.cpp
+        40.ClassTemplates/40.4NonTypeTemplateParameters/boxcontainer.h
+        40.ClassTemplates/40.4NonTypeTemplateParameters/main.cpp
+        40.ClassTemplates/40.5DefaultValuesForTemplateParameters/boxcontainer.cpp
+        40.ClassTemplates/40.5DefaultValuesForTemplateParameters/boxcontainer.h
+        40.ClassTemplates/40.5DefaultValuesForTemplateParameters/main.cpp
+        40.ClassTemplates/40.7TemplateSpecializations/adder.cpp
+        40.ClassTemplates/40.7TemplateSpecializations/adder.h
+        40.ClassTemplates/40.7TemplateSpecializations/main.cpp
+        40.ClassTemplates/40.7TemplateSpecializations/some_other_file.cpp
+        40.ClassTemplates/40.8TemplateSpecializationWithSelectMemberFunctions/boxcontainer.cpp
+        40.ClassTemplates/40.8TemplateSpecializationWithSelectMemberFunctions/boxcontainer.h
+        40.ClassTemplates/40.8TemplateSpecializationWithSelectMemberFunctions/main.cpp
+        "40.ClassTemplates/C++ 20 Template Project/main.cpp"
+        41.MoveSemantics/41.08MoveOnlyTypes/boxcontainer.cpp
+        41.MoveSemantics/41.08MoveOnlyTypes/boxcontainer.h
+        41.MoveSemantics/41.08MoveOnlyTypes/main.cpp
+        41.MoveSemantics/41.09PassingByRvalueReference/boxcontainer.cpp
+        41.MoveSemantics/41.09PassingByRvalueReference/boxcontainer.h
+        41.MoveSemantics/41.09PassingByRvalueReference/main.cpp
+        41.MoveSemantics/41.2LvaluesAndRvalues/main.cpp
+        41.MoveSemantics/41.3RvalueReferences/main.cpp
+        41.MoveSemantics/41.4MovingTemporariesAround/boxcontainer.cpp
+        41.MoveSemantics/41.4MovingTemporariesAround/boxcontainer.h
+        41.MoveSemantics/41.4MovingTemporariesAround/main.cpp
+        41.MoveSemantics/41.5MoveConstructorsMoveAssignmentOperators/boxcontainer.cpp
+        41.MoveSemantics/41.5MoveConstructorsMoveAssignmentOperators/boxcontainer.h
+        41.MoveSemantics/41.5MoveConstructorsMoveAssignmentOperators/main.cpp
+        41.MoveSemantics/41.6MovingLvaluesWithStdMove/boxcontainer.cpp
+        41.MoveSemantics/41.6MovingLvaluesWithStdMove/boxcontainer.h
+        41.MoveSemantics/41.6MovingLvaluesWithStdMove/main.cpp
+        41.MoveSemantics/41.7InvalidatePointersAfterStdMove/boxcontainer.cpp
+        41.MoveSemantics/41.7InvalidatePointersAfterStdMove/boxcontainer.h
+        41.MoveSemantics/41.7InvalidatePointersAfterStdMove/main.cpp
+        "41.MoveSemantics/C++ 20 Template Project/main.cpp"
+        42.FunctionLikeEntities/42.10LambdaFunctionsAsCallbacks/boxcontainer.cpp
+        42.FunctionLikeEntities/42.10LambdaFunctionsAsCallbacks/boxcontainer.h
+        42.FunctionLikeEntities/42.10LambdaFunctionsAsCallbacks/main.cpp
+        42.FunctionLikeEntities/42.11CapturingByValueUnderTheHood/main.cpp
+        42.FunctionLikeEntities/42.12CapturingByReferenceUnderTheHood/main.cpp
+        42.FunctionLikeEntities/42.13MixinCapturing/main.cpp
+        42.FunctionLikeEntities/42.14CapturingTheThisPointer/main.cpp
+        42.FunctionLikeEntities/42.15StdFunction/boxcontainer.cpp
+        42.FunctionLikeEntities/42.15StdFunction/boxcontainer.h
+        42.FunctionLikeEntities/42.15StdFunction/main.cpp
+        42.FunctionLikeEntities/42.2FunctionPointers/main.cpp
+        42.FunctionLikeEntities/42.3CallbackFunctions/boxcontainer.cpp
+        42.FunctionLikeEntities/42.3CallbackFunctions/boxcontainer.h
+        42.FunctionLikeEntities/42.3CallbackFunctions/main.cpp
+        42.FunctionLikeEntities/42.4FunctionPointerTypeAliases/boxcontainer.cpp
+        42.FunctionLikeEntities/42.4FunctionPointerTypeAliases/boxcontainer.h
+        42.FunctionLikeEntities/42.4FunctionPointerTypeAliases/main.cpp
+        42.FunctionLikeEntities/42.5FunctionPointerTypeAliasesWithTemplates/boxcontainer.cpp
+        42.FunctionLikeEntities/42.5FunctionPointerTypeAliasesWithTemplates/boxcontainer.h
+        42.FunctionLikeEntities/42.5FunctionPointerTypeAliasesWithTemplates/main.cpp
+        42.FunctionLikeEntities/42.6Functors/decrypt.cpp
+        42.FunctionLikeEntities/42.6Functors/decrypt.h
+        42.FunctionLikeEntities/42.6Functors/encrypt.cpp
+        42.FunctionLikeEntities/42.6Functors/encrypt.h
+        42.FunctionLikeEntities/42.6Functors/main.cpp
+        42.FunctionLikeEntities/42.7StandardFunctors/boxcontainer.cpp
+        42.FunctionLikeEntities/42.7StandardFunctors/boxcontainer.h
+        42.FunctionLikeEntities/42.7StandardFunctors/main.cpp
+        42.FunctionLikeEntities/42.8FunctorsWithParameters/boxcontainer.cpp
+        42.FunctionLikeEntities/42.8FunctorsWithParameters/boxcontainer.h
+        42.FunctionLikeEntities/42.8FunctorsWithParameters/main.cpp
+        42.FunctionLikeEntities/42.9FunctorsAndLambdaFunctions/main.cpp
+        "42.FunctionLikeEntities/C++ 20 Template Project/main.cpp"
+        43.StlContainersAndIterators/43.2StdVector/main.cpp
+        43.StlContainersAndIterators/43.3StdArray/main.cpp
+        43.StlContainersAndIterators/43.4Iterators/main.cpp
+        43.StlContainersAndIterators/43.5TraversingContainerSubsetsWithIterators/main.cpp
+        43.StlContainersAndIterators/43.6ReverseIterators/main.cpp
+        43.StlContainersAndIterators/43.7ContantIterators/main.cpp
+        43.StlContainersAndIterators/43.9StdBeginStdEnd/main.cpp
+        "43.StlContainersAndIterators/C++ 20 Template Project/main.cpp"
+        44.ZoomingOnSTLContainers/44.10Map/main.cpp
+        44.ZoomingOnSTLContainers/44.11MultisetMultimap/main.cpp
+        44.ZoomingOnSTLContainers/44.12UnorderedSetUnorderedMap/main.cpp
+        44.ZoomingOnSTLContainers/44.14Stack/main.cpp
+        44.ZoomingOnSTLContainers/44.15Queue/main.cpp
+        44.ZoomingOnSTLContainers/44.16PriorityQueue/main.cpp
+        44.ZoomingOnSTLContainers/44.2Deque/main.cpp
+        44.ZoomingOnSTLContainers/44.3ForwardList/main.cpp
+        44.ZoomingOnSTLContainers/44.4List/main.cpp
+        44.ZoomingOnSTLContainers/44.5Vector/main.cpp
+        44.ZoomingOnSTLContainers/44.6Array/main.cpp
+        44.ZoomingOnSTLContainers/44.8Pair/main.cpp
+        44.ZoomingOnSTLContainers/44.9Set/main.cpp
+        "44.ZoomingOnSTLContainers/C++ 20 Template Project/main.cpp"
+        45.StlAlgorithms/45.2AllOf/main.cpp
+        45.StlAlgorithms/45.3ForEach/main.cpp
+        45.StlAlgorithms/45.4.MaxEltMinElt/main.cpp
+        45.StlAlgorithms/45.5FindAndFindIf/main.cpp
+        45.StlAlgorithms/45.6Copy/main.cpp
+        45.StlAlgorithms/45.7Sort/main.cpp
+        45.StlAlgorithms/45.8Transform/main.cpp
+        "45.StlAlgorithms/C++ 20 Template Project/main.cpp"
+        46.RangesLibraryInCpp20/46.2RangeAlgorithms/main.cpp
+        46.RangesLibraryInCpp20/46.3RangeLibraryIteratorPairAlgorithms/main.cpp
+        46.RangesLibraryInCpp20/46.4Projections/main.cpp
+        46.RangesLibraryInCpp20/46.4Projections/point.cpp
+        46.RangesLibraryInCpp20/46.4Projections/point.h
+        46.RangesLibraryInCpp20/46.5ViewsAndRangeAdaptors/main.cpp
+        46.RangesLibraryInCpp20/46.6ViewCompositionAndPipeOperator/main.cpp
+        46.RangesLibraryInCpp20/46.7RangeFactories/main.cpp
+        "46.RangesLibraryInCpp20/C++ 20 Template Project/main.cpp"
+        47.BuildingIteratorsForCustomContainers/40.02.IteratorPowers/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.04CustomInputIterator/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.04CustomInputIterator/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.04CustomInputIterator/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.05CustomOutputIterator/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.05CustomOutputIterator/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.05CustomOutputIterator/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.06CustomForwardIterator/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.06CustomForwardIterator/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.06CustomForwardIterator/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.07CustomBidirectionalIteator/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.07CustomBidirectionalIteator/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.07CustomBidirectionalIteator/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.08CustomRandomAccessIterator/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.08CustomRandomAccessIterator/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.08CustomRandomAccessIterator/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.09CustomIteratorsWithViews/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.09CustomIteratorsWithViews/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.09CustomIteratorsWithViews/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.10ConstantIterators/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.10ConstantIterators/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.10ConstantIterators/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.11RawPointersAsIterators/boxcontainer.cpp
+        47.BuildingIteratorsForCustomContainers/40.11RawPointersAsIterators/boxcontainer.h
+        47.BuildingIteratorsForCustomContainers/40.11RawPointersAsIterators/main.cpp
+        47.BuildingIteratorsForCustomContainers/40.12WrappingIteratorsFromOtherContainers/main.cpp
+        "47.BuildingIteratorsForCustomContainers/C++ 20 Template Project/main.cpp"
+        48.Coroutines/47.5CoAwait/main.cpp
+        48.Coroutines/47.6CoYield/main.cpp
+        48.Coroutines/47.7CoReturn/main.cpp
+        48.Coroutines/47.8CustomGenerator/main.cpp
+        48.Coroutines/47.9ThirdPartyCorotineTypes/main.cpp
+        48.Coroutines/47.9ThirdPartyCorotineTypes/unique_generator.h
+        "48.Coroutines/C++ 20 Template Project/main.cpp"
+        49.Modules/48.10ModuleInterfacePartitions/add_partition.ixx
+        49.Modules/48.10ModuleInterfacePartitions/main.cpp
+        49.Modules/48.10ModuleInterfacePartitions/math.ixx
+        49.Modules/48.10ModuleInterfacePartitions/mult_partition.ixx
+        49.Modules/48.11BoxContainerModule/boxcontainer.ixx
+        49.Modules/48.11BoxContainerModule/main.cpp
+        49.Modules/48.12ModulesWithNamespaces/main.cpp
+        49.Modules/48.12ModulesWithNamespaces/math.ixx
+        49.Modules/48.13VisibilityReachability/main.cpp
+        49.Modules/48.13VisibilityReachability/math.ixx
+        49.Modules/48.14PrivateModuleFragment/main.cpp
+        49.Modules/48.14PrivateModuleFragment/math.ixx
+        49.Modules/48.15DosAndDonts/main.cpp
+        49.Modules/48.15DosAndDonts/math.ixx
+        49.Modules/48.1Introduction/main.cpp
+        49.Modules/48.1Introduction/math.ixx
+        49.Modules/48.2YourFirstModule/main.cpp
+        49.Modules/48.2YourFirstModule/math.ixx
+        49.Modules/48.3BlockExport/main.cpp
+        49.Modules/48.3BlockExport/math.ixx
+        49.Modules/48.4SeparateInterfaceFromImplementation-SameFile/main.cpp
+        49.Modules/48.4SeparateInterfaceFromImplementation-SameFile/math.ixx
+        49.Modules/48.5SeparateInterfaceFromImplementation-DifferentFiles/main.cpp
+        49.Modules/48.5SeparateInterfaceFromImplementation-DifferentFiles/math.ixx
+        49.Modules/48.5SeparateInterfaceFromImplementation-DifferentFiles/math_impl.cpp
+        49.Modules/48.6MultipleImplementationFiles/main.cpp
+        49.Modules/48.6MultipleImplementationFiles/math.ixx
+        49.Modules/48.6MultipleImplementationFiles/math_impl.cpp
+        49.Modules/48.6MultipleImplementationFiles/print_impl.cpp
+        49.Modules/48.7MultipleInterfaceFiles/main.cpp
+        49.Modules/48.7MultipleInterfaceFiles/math.ixx
+        49.Modules/48.7MultipleInterfaceFiles/math_impl.cpp
+        49.Modules/48.7MultipleInterfaceFiles/print.ixx
+        49.Modules/48.7MultipleInterfaceFiles/print_impl.cpp
+        49.Modules/48.8ExportImport/line.ixx
+        49.Modules/48.8ExportImport/main.cpp
+        49.Modules/48.8ExportImport/point.ixx
+        49.Modules/48.9SubModules/add_sub.ixx
+        49.Modules/48.9SubModules/main.cpp
+        49.Modules/48.9SubModules/math.ixx
+        49.Modules/48.9SubModules/mult_div.ixx)
