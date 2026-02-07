@@ -128,13 +128,7 @@ vLLM in containers (recommended for vLLM)
     # 1) Use kubernetes-cluster-setup/ to prepare the cluster for this vLLM stack
     # 2) Deploy vLLM server + UI from this directory
 
-👤 Author
 
-Saujan DSRE
-SRE | AI/ML Infrastructure & GPU Enthusiast
 
-🔗
-YouTube: https://www.youtube.com/@SaujanBohara
 
-LinkedIn: https://www.linkedin.com/in/saujanya-bohara/
 
