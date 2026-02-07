@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-http01-gw
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: kumarnikhil811@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-http01-key
+    solvers:
+      - http01:
+          gatewayHTTPRoute:
+            parentRefs:
+              - kind: Gateway
+                group: gateway.networking.k8s.io
+                name: shared-gateway
+                namespace: gateway-system

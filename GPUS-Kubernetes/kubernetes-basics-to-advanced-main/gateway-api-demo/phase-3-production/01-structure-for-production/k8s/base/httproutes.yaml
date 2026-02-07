@@ -1,0 +1,28 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: app-route
+spec:
+  parentRefs:
+    - name: main-gateway
+  hostnames:
+    - "app.34.59.118.192.sslip.io"
+
+  rules:
+    # API PATH
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
+      backendRefs:
+        - name: api-svc
+          port: 80
+
+    # FRONTEND PATH
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: frontend-svc
+          port: 80		  

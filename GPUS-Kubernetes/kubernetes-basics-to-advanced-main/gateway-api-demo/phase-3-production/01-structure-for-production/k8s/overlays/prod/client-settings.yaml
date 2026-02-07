@@ -1,0 +1,11 @@
+apiVersion: gateway.nginx.org/v1alpha1
+kind: ClientSettingsPolicy
+metadata:
+  name: api-client-protection
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: app-route
+  body:
+    maxSize: "1m"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vpa-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vpa-demo
+  template:
+    metadata:
+      labels:
+        app: vpa-demo
+    spec:
+      containers:
+      - name: cpu-demo
+        image: vish/stress
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "5000m"
+        args:
+          - -cpus
+          - "1"

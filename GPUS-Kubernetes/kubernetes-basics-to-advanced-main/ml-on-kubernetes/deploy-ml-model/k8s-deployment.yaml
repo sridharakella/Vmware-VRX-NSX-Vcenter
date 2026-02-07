@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-demo
+  template:
+    metadata:
+      labels:
+        app: ml-demo
+    spec:
+      containers:
+      - name: ml
+        image: quay.io/nikhil811/techinik:k8s-ml
+        ports:
+        - containerPort: 8000

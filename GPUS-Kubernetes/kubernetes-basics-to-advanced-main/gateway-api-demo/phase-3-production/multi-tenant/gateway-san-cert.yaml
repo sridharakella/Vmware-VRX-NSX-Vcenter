@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: platform-cert
+  namespace: gateway-system
+spec:
+  secretName: platform-tls
+  dnsNames:
+  - app1.<ip>.nip.io
+  - app2.<ip>.nip.io
+  issuerRef:
+    name: letsencrypt-http01-gw
+    kind: ClusterIssuer
