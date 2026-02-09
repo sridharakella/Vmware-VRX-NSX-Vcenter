@@ -32,7 +32,7 @@ Every topic gets its own folder, so you can jump directly to what you’re learn
 1. Clone it
 
 ```
-git clone https://github.com/NikKumar811/kubernetes-basics-to-advanced.git
+git clone https://github.com/sridharakella/Vmware-VRX-NSX-Vcenter.git
 ```
 
 2. Pick the topic you’re watching in the playlist.
