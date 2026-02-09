@@ -50,10 +50,10 @@ git clone https://github.com/sridharakella/Vmware-VRX-NSX-Vcenter.git
 
 ---
 
-## Playlist Link
 
 
-I will update the repo as soon as new videos drop.
+
+
 
 ---
 
