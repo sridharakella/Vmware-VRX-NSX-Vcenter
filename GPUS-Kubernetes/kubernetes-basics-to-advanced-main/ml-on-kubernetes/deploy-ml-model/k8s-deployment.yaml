@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: ml
-        image: quay.io/nikhil811/techinik:k8s-ml
+        image: quay.io/sri811/techinik:k8s-ml
         ports:
         - containerPort: 8000
