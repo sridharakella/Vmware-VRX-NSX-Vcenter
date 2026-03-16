@@ -26,6 +26,289 @@ Kubernetes recommends 110 pods for node.
 maximum number if services in namespace is 5000 and in cluster is 10000
 if we decide to go with cluster autoscaler , it is tested for 1000 nodes upto 30 pods per node.
 
+
+1.1 CrashLoopBackOff
+Symptom: Pod starts, runs briefly, crashes, restarts with exponential backoff (10s, 20s, 40s... up to 5 minutes).
+Impact: Service unavailability, cascading failures if dependent services timeout waiting.
+Root Causes:
+•	Application crash on startup (unhandled exception, missing config, bad database connection)
+•	OOMKilled — container exceeds memory limit
+•	Liveness probe failing too aggressively (app slow to start, probe fires before ready)
+•	Missing environment variable or Secret that the app requires
+•	Wrong command or entrypoint in container image
+kubectl get pod <pod> -n <ns> -o wide
+# Check container exit code and reason
+kubectl describe pod <pod> -n <ns> | grep -A 5 "Last State"
+# Exit code 137 = OOMKilled (SIGKILL from kernel)
+# Exit code 1   = Application error
+# Exit code 0   = Graceful exit (but K8s restarts because restartPolicy: Always)
+
+# Get application logs (current crash)
+kubectl logs <pod> -n <ns>
+
+# Get logs from PREVIOUS crash (critical for CrashLoopBackOff)
+kubectl logs <pod> -n <ns> --previous
+
+# Check events for OOM or scheduling issues
+kubectl get events -n <ns> --sort-by=.lastTimestamp | grep <pod>
+
+# Check resource usage vs limits
+kubectl top pod <pod> -n <ns>
+
+--------------------
+
+Symptom: Pod stuck in ImagePullBackOff or ErrImagePull status, never starts.
+Root Causes:
+•	Image name or tag is wrong (typo, tag doesn't exist)
+•	Registry authentication failure (expired token, missing imagePullSecret)
+•	Private registry not accessible from cluster network
+•	Docker Hub rate limiting (100 pulls/6hr for anonymous, 200 for free accounts)
+•	ECR token expired (12-hour validity)
+kubectl describe pod <pod> -n <ns> | grep -A 10 "Events"
+
+# Look for:
+# "Failed to pull image" → tells you exactly which image and why
+# "unauthorized" → auth problem
+# "not found" → wrong image name/tag
+# "toomanyrequests" → Docker Hub rate limit
+
+# Verify image exists
+crane manifest <image>:<tag>
+
+# Check imagePullSecrets on the pod
+kubectl get pod <pod> -n <ns> -o jsonpath='{.spec.imagePullSecrets}'
+
+# For ECR: verify node IAM role has ecr:GetAuthorizationToken
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account>.dkr.ecr.us-east-1.amazonaws.com
+
+--------------------------------------------
+Symptom: Pod stays in Pending state indefinitely, never gets scheduled to a node.
+Root Causes:
+•	Insufficient CPU or memory on any node (no node has enough free resources)
+•	Node selector or affinity rules match no nodes
+•	Taints on all nodes with no matching tolerations
+•	PersistentVolumeClaim bound to a PV in a different AZ (topology constraint)
+•	ResourceQuota exceeded in the namespace
+•	Too many pods on node (max-pods limit reached)
+---------------------------------------------
+1.4 Pod Evictions
+Symptom: Pods terminated unexpectedly with status Evicted, may see hundreds of evicted pods.
+Root Causes:
+•	Node disk pressure — root filesystem or imagefs exceeds eviction threshold
+•	Node memory pressure — available memory below eviction threshold
+•	Node PID pressure — too many processes on the node
+•	Preemption — higher-priority pod displaces lower-priority pod
+Diagnosis:
+# Check node conditions
+kubectl describe node <node> | grep -A 5 Conditions
+# Look for: MemoryPressure, DiskPressure, PIDPressure = True
+# Check eviction events
+kubectl get events -n <ns> --field-selector reason=Evicted
+
+# Check disk usage on node
+# SSH to node or use crictl
+df -h /
+df -h /var/lib/containerd
+
+# Clean up evicted pods (they clutter kubectl get pods)
+kubectl get pods -n <ns> --field-selector status.phase=Failed \
+  -o name | xargs kubectl delete -n <ns>
+Resolution:
+•	Disk pressure: increase EBS volume size (io2/gp3 supports online resize), clean up unused images with crictl rmi --prune, set image garbage collection thresholds
+•	Memory pressure: set proper resource limits on all pods, use LimitRange for defaults, add more nodes
+•	PID pressure: investigate pod creating excessive processes/threads; increase kernel.pid_max if needed
+•	Add PodDisruptionBudget to protect critical services from eviction
+
+----------------
+2.1 DNS Resolution Failures
+Symptom: Intermittent "could not resolve host", 5-second delays on service calls, NXDOMAIN errors.
+Root Causes:
+•	CoreDNS pods overloaded (high QPS, not enough replicas)
+•	Conntrack race condition dropping DNS UDP packets
+•	ndots:5 default causing excessive DNS queries (5 search domain expansions before external lookup)
+•	CoreDNS crash-looping or not running
+Diagnosis:
+# Check CoreDNS status
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+
+# Check CoreDNS logs for errors
+kubectl logs -n kube-system -l k8s-app=kube-dns --tail=100
+
+# Test DNS from inside a pod
+kubectl run dns-test --rm -it --image=busybox:1.36 -- nslookup kubernetes.default
+
+# Measure DNS latency
+kubectl run dns-test --rm -it --image=nicolaka/netshoot -- \
+  bash -c 'for i in $(seq 1 10); do time nslookup product-service.production; done'
+
+# Check CoreDNS metrics
+kubectl exec -n kube-system deploy/coredns -- \
+  wget -qO- http://localhost:9153/metrics | grep coredns_dns_request_count
+
+# Check conntrack drops (run on node)
+conntrack -S | grep insert_failed
+Resolution:
+# 1. Deploy NodeLocal DNSCache (BEST fix for DNS issues)
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml
+
+# 2. Scale CoreDNS based on cluster size
+kubectl -n kube-system scale deploy coredns --replicas=5
+
+# Or use DNS autoscaler:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/dns-horizontal-autoscaler/dns-horizontal-autoscaler.yaml
+
+# 3. Reduce ndots to avoid unnecessary lookups
+# In pod spec:
+spec:
+  dnsConfig:
+    options:
+      - name: ndots
+        value: "2"
+
+# 4. Use FQDN with trailing dot to skip search domains
+# http://product-service.production.svc.cluster.local.
+PRODUCTION TIP: NodeLocal DNSCache is the single most impactful fix for Kubernetes DNS issues. It eliminates conntrack races for DNS, reduces CoreDNS load by 80%+, and cuts DNS latency from ~5ms to <1ms.
+---------------------------------
+2.2 Service-to-Service Connectivity Failures
+Symptom: Connection refused, connection timeout, or intermittent 502/503 errors between services.
+Root Causes:
+•	Target pods not ready (readiness probe failing but endpoints not yet removed)
+•	Service selector doesn't match pod labels
+•	NetworkPolicy blocking traffic
+•	kube-proxy iptables rules stale (stale endpoints after pod deletion)
+•	Port mismatch (service port vs targetPort vs containerPort)
+Diagnosis:
+# Verify service endpoints exist
+kubectl get endpoints <service> -n <ns>
+# If ENDPOINTS is <none>, no pods match the selector
+
+# Check service selector matches pod labels
+kubectl get svc <service> -n <ns> -o jsonpath='{.spec.selector}'
+kubectl get pods -n <ns> -l <key>=<value>
+
+# Check NetworkPolicy
+kubectl get networkpolicy -n <ns>
+kubectl describe networkpolicy <policy> -n <ns>
+
+# Test connectivity from another pod
+kubectl run curl-test --rm -it --image=curlimages/curl -- \
+  curl -v http://<service>.<ns>.svc.cluster.local:<port>/health
+
+# Check if readiness probe is passing
+kubectl describe pod <pod> -n <ns> | grep -A 10 "Readiness"
+
+# Check port mapping
+kubectl get svc <service> -n <ns> -o jsonpath='{.spec.ports}'
+------------------------------------------------------------------
+Symptom: 502 Bad Gateway, 504 Gateway Timeout, intermittent connection resets from ALB/NLB.
+Root Causes:
+•	Backend pods not ready when ALB starts sending traffic
+•	ALB target group health check failing (wrong path, wrong port)
+•	ALB idle timeout (60s default) shorter than app's keep-alive timeout
+•	Pod termination race — ALB sends traffic to pod during SIGTERM grace period
+•	Security Group not allowing ALB to reach pod port
+The 502 During Deployment Problem:
+This is the most common ALB issue. During a rolling update, old pods are terminated while new pods start. If the ALB's target deregistration is slower than Kubernetes pod deletion, traffic hits a terminated pod and returns 502.
+Resolution:
+# Fix 502 during deployments: add preStop hook to delay pod shutdown
+spec:
+  containers:
+    - name: app
+      lifecycle:
+        preStop:
+          exec:
+            command: ["/bin/sh", "-c", "sleep 15"]
+  terminationGracePeriodSeconds: 45
+
+# Fix ALB idle timeout mismatch
+# Set app keep-alive > ALB idle timeout (60s)
+# Spring Boot: server.tomcat.keep-alive-timeout=65000
+# Or increase ALB timeout:
+alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=120
+
+# Fix target group health check
+alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+alb.ingress.kubernetes.io/unhealthy-threshold-count: '3'
+CRITICAL: The preStop sleep is essential for zero-downtime deployments on EKS with ALB. Without it, you will get 502s during every deployment. The sleep gives the ALB time to deregister the target before the pod stops accepting connections.
+-----------------------------
+
+2.4 TCP Retransmissions & Latency Spikes
+Symptom: P99 latency jumps from ~50ms to 1050ms or 2050ms (exact 1-second multiples). Intermittent timeouts.
+Root Causes:
+•	Conntrack SNAT source port collision (most common)
+•	Conntrack table exhaustion
+•	EC2 network bandwidth/PPS throttling
+•	Cross-AZ packet loss
+Diagnosis:
+# Check conntrack stats (run on node)
+conntrack -S
+# Look for: insert_failed, drop, early_drop
+
+# Check conntrack table usage
+conntrack -C
+cat /proc/sys/net/netfilter/nf_conntrack_max
+
+# Check TCP retransmissions
+netstat -s | grep -i retransmit
+# Or: cat /proc/net/snmp | grep Tcp
+
+# Check per-connection retransmits
+ss -ti | grep retrans
+
+# Check EC2 network performance (CloudWatch)
+# Metrics: NetworkPacketsIn, NetworkPacketsOut, NetworkBandwidthInAllowanceExceeded
+Resolution:
+# 1. Increase conntrack table size (DaemonSet sysctl)
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: sysctl-tuner
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: sysctl-tuner
+  template:
+    metadata:
+      labels:
+        app: sysctl-tuner
+    spec:
+      hostPID: true
+      hostNetwork: true
+      initContainers:
+        - name: sysctl
+          image: busybox:1.36
+          securityContext:
+            privileged: true
+          command:
+            - sh
+            - -c
+            - |
+              sysctl -w net.netfilter.nf_conntrack_max=524288
+              sysctl -w net.core.somaxconn=65535
+              sysctl -w net.ipv4.tcp_max_syn_backlog=65535
+      containers:
+        - name: pause
+          image: registry.k8s.io/pause:3.9
+
+# 2. Enable SNAT randomization on VPC CNI
+kubectl set env daemonset aws-node -n kube-system \
+  AWS_VPC_K8S_CNI_RANDOMIZESNAT=prng
+
+# 3. Use larger instance types with higher PPS limits
+# m6i.xlarge: 15 Gbps baseline, m6i.2xlarge: 20 Gbps
+------------------------------
+
+
+
+
+
+
+
+
+
 Rollback strategies
 
 Upgrade Strategries.
